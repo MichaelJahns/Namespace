@@ -26,4 +26,13 @@ public class CampaignController {
         UserAccount user = this.accountRepo.findByUsername(p.getName());
         return "dashboard";
     }
+
+    @GetMapping("/campaign")
+    public String getCampaigns(
+            Principal p,
+            Model model
+    ){
+        UserAccount user = this.accountRepo.findByUsername(p.getName());
+        return "campaign";
+    }
 }

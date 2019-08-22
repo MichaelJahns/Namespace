@@ -5,10 +5,10 @@
     <title> Join Us! </title>
 </head>
 <body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
 <h1> Sign Up </h1>
 
-<section class="front-facing-form" id="signup">
-    <h2 class="front-facing-h2" id="signupIntro"> Namespace </h2>
     <div>
         <form class="form-input" action="/signup" method="post">
             <input type="text" name="username" required placeholder="Username"> </input>
@@ -16,7 +16,6 @@
             <button type="submit" name="submit"> Start Journaling</button>
         </form>
     </div>
-</section>
 
 </body>
 </html>

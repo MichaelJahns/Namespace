@@ -36,7 +36,7 @@ public class AccountController {
             }
         }catch (Exception E){
             //Todo: what is the fail state?
-            model.addAttribute("errored", true);
+//            model.addAttribute("errored", true);
         }
         return "login";
     }
