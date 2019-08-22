@@ -6,10 +6,15 @@
 </head>
 <body>
 
+<!--Stylesheets-->
+<head th:fragment="stylesheets">
+    <link href="/css/navbar.css" rel="stylesheet">
+</head>
 <!--Navigation Bar-->
 <nav th:fragment="navbar" class="navbar">
     <a href="/dashboard"> Dashboard </a>
     <a href="/perform_logout"> Logout </a>
+    <a href="/dashboard/campaign"> Campaigns </a>
 </nav>
 
 </body>
