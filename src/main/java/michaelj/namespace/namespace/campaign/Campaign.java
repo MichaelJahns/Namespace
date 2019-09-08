@@ -1,9 +1,11 @@
 package michaelj.namespace.namespace.campaign;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.ArrayList;
 
+@Entity
 public class Campaign {
     @Id
     @GeneratedValue

@@ -50,6 +50,7 @@ public class CampaignController {
         UserAccount user = accountRepo.findByUsername(p.getName());
         Campaign campaign = new Campaign(body);
         campaignRepo.save(campaign);
+        System.out.println("Critical SUccess");
         return new RedirectView("/home");
     }
 }
