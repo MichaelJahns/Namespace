@@ -1,0 +1,38 @@
+
+#dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: brown;
+    width: 80%;
+    margin: auto;
+}
+
+.dashboard-item{
+    display: flex;
+    border: 4px ridge gray;
+    color: black;
+    background-color: blue;
+
+    margin: 2%;
+    width: 43%;
+    height: 250px;
+
+    text-align: center;
+}
+
+.dashboard-item h3{
+    background: black;
+    opacity: 0.6;
+    color: white;
+    justify-content: flex-start;
+    margin-left: -2.5%;
+    margin-top: 125px;
+    width: 200px;
+
+
+}
+
+*{
+background-color: pink;
+}
