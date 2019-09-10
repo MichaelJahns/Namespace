@@ -11,12 +11,27 @@ public class HerbBag {
     public HerbBag(String name, int capacity){
         this.name = name;
         this.capacity = capacity;
+        this.stock = new HashMap<String, Integer>();
     }
 
     public void speak(){
         System.out.println("I also exist");
     }
-    
+
+    public boolean checkHerbBag(String herb){
+        Boolean output = this.stock.containsKey(herb);
+        return output;
+    }
+
+    public void addHerbToBag(String herb, int quanity){
+        this.stock.merge(herb, quanity, Integer::sum);
+    }
+
+
+    //create function to decrement kvpair
+    //create function to delete kvpair if 0;
+
+
     //Getters
     public String getName() {
         return name;
