@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments :: stylesheets}">
+
+    <meta charset="UTF-8">
+    <title>Herbology</title>
+</head>
+
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<div>
+    <button> Forage  </button>
+    <button> Travel Forage </button>
+
+    <form>
+<!--        Input for manually adding a herb type, needs Name input and quantity, triggers functions -->
+    </form>
+</div>
+
+
+<table th:replace="~{/fragments/inventoryFragments :: herbBag}"></table>
+
+
+</body>
+</html>

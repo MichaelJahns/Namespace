@@ -4,7 +4,7 @@ import michaelj.namespace.namespace.inventory.Inventory;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Scenario {
     public String label;
     // public Graph Relationships

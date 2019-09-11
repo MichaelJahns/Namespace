@@ -1,6 +1,10 @@
 package michaelj.namespace.namespace.herbology;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import static michaelj.namespace.namespace.board.Dice.rollDice;
 
 public class HerbBag {
     private String name;
@@ -11,16 +15,41 @@ public class HerbBag {
     public HerbBag(String name, int capacity){
         this.name = name;
         this.capacity = capacity;
-        this.stock = new HashMap<String, Integer>();
-    }
-
-    public void speak(){
-        System.out.println("I also exist");
+        this.stock = new HashMap<>();
     }
 
     public boolean checkHerbBag(String herb){
         Boolean output = this.stock.containsKey(herb);
         return output;
+    }
+
+    public void bigTester(){
+        for(Map.Entry<String, Integer> entry : stock.entrySet()){
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        Set holder = stock.entrySet();
+    }
+
+    public void forageForHerbs(){
+        int herbsFound = rollDice(4);
+        for(int i = 0 ; i < herbsFound ; i++){
+            // Roll dice to determine which Herb to pull from Loot Tables
+                // Town, Field, Cave, Mountain, Ocean
+            String herbName = "Shatter Stalk";
+            int quantityFound = rollDice(6);
+            addHerbToBag(herbName, quantityFound);
+        }
+    }
+
+    public void forageForReagents(){
+        int reagentsFound = rollDice(6);
+        for(int i = 0; i < reagentsFound ; i++){
+            //Roll dice to determine Which Reagents to pull from Loot Tables
+                // Town, Field, Cave, Mountain, Ocean
+            String reagentName = "Snape Grass";
+            int quantityFound = rollDice(6);
+            addHerbToBag(reagentName, quantityFound);
+        }
     }
 
     public void addHerbToBag(String herb, int quanity){
