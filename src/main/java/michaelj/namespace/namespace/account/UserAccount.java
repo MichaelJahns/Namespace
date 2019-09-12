@@ -1,14 +1,13 @@
 package michaelj.namespace.namespace.account;
 
+import michaelj.namespace.namespace.herbology.HerbBag;
+import michaelj.namespace.namespace.inventory.Inventory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
@@ -21,33 +20,46 @@ public class UserAccount implements UserDetails {
     private String username;
     private String password;
 
+    @OneToOne
+    private Inventory inventory;
+
     public UserAccount(){}
 
     public UserAccount(String username, String password, PasswordEncoder encoder){
         this.username = username;
         this.password = encoder.encode(password);
+        this.inventory = new Inventory();
     }
 
+    //Getters
+    @Override
+    public String getUsername() {
+        return username;
+    }
+    @Override
+    public String getPassword() {
+        return password;
+    }
+    public Inventory getInventory() {
+        return inventory;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
+    //Setters
     public void setUsername(String username){
         this.username = username;
     }
     public void setPassword(String password, PasswordEncoder encoder){
         this.password = encoder.encode(password);
     }
-    @Override
-    public String getUsername() {
-        return username;
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
+
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -66,4 +78,6 @@ public class UserAccount implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
