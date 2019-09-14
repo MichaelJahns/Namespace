@@ -1,10 +1,14 @@
 package michaelj.namespace.namespace.account;
 
+import michaelj.namespace.namespace.herbology.HerbBag;
+import michaelj.namespace.namespace.herbology.HerbBagRepo;
+import michaelj.namespace.namespace.inventory.Inventory;
+import michaelj.namespace.namespace.inventory.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +22,22 @@ import java.security.Principal;
 public class AccountController {
 
     @Autowired
-    AccountRepo repo;
+    AccountRepo accountRepo;
+
+    @Autowired
+    InventoryRepo inventoryRepo;
+
+    @Autowired
+    HerbBagRepo herbBagRepo;
 
     @Autowired
     PasswordEncoder encoder;
+
+    public void saveAll(HerbBag herbBag, Inventory inventory, UserAccount userAccount){
+        herbBagRepo.save(herbBag);
+        inventoryRepo.save(inventory);
+        accountRepo.save(userAccount);
+    }
 
     @GetMapping("/login")
     public String getLogin(
@@ -30,7 +46,7 @@ public class AccountController {
             Model model
     ) {
         try {
-            UserAccount user = repo.findByUsername(p.getName());
+            UserAccount user = accountRepo.findByUsername(p.getName());
             if (user != null) {
                 return "redirect:/dashboard/";
             }
@@ -49,11 +65,14 @@ public class AccountController {
             @RequestParam String username,
             @RequestParam String password
     ) throws DataIntegrityViolationException {
-        UserAccount newUser = new UserAccount();
-        newUser.setUsername(username);
-        newUser.setPassword(password, this.encoder);
 
-        repo.save(newUser);
+        UserAccount newUser = new UserAccount(username, password, this.encoder);
+        Inventory inventory = newUser.getInventory();
+        HerbBag herbBag = inventory.getHerbBag();
+        herbBag.forageForHerbs();
+
+        saveAll(herbBag, inventory, newUser);
+
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 newUser,
                 null,
@@ -62,4 +81,5 @@ public class AccountController {
         SecurityContextHolder.getContext().setAuthentication(token);
         return "redirect:/dashboard";
     }
+
 }
