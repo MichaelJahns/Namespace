@@ -1,5 +1,7 @@
 package michaelj.namespace.namespace.account;
 
+import michaelj.namespace.namespace.herbology.HerbBag;
+import michaelj.namespace.namespace.herbology.HerbBagRepo;
 import michaelj.namespace.namespace.inventory.Inventory;
 import michaelj.namespace.namespace.inventory.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,13 @@ public class AccountController {
     InventoryRepo inventoryRepo;
 
     @Autowired
+    HerbBagRepo herbBagRepo;
+
+    @Autowired
     PasswordEncoder encoder;
 
-    public void saveAll(Inventory inventory, UserAccount userAccount){
+    public void saveAll(HerbBag herbBag, Inventory inventory, UserAccount userAccount){
+        herbBagRepo.save(herbBag);
         inventoryRepo.save(inventory);
         accountRepo.save(userAccount);
     }
@@ -62,9 +68,11 @@ public class AccountController {
 
         UserAccount newUser = new UserAccount(username, password, this.encoder);
         Inventory inventory = newUser.getInventory();
+        HerbBag herbBag = inventory.getHerbBag();
+        herbBag.forageForHerbs();
 
-        saveAll(inventory, newUser);
-        
+        saveAll(herbBag, inventory, newUser);
+
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 newUser,
                 null,

@@ -19,8 +19,8 @@ public class HerbBag {
     @Id
     private long id;
 
-//    @OneToOne(mappedBy = "herbBag")
-//    private Inventory inventory;
+    @OneToOne(mappedBy = "herbBag")
+    private Inventory inventory;
 
     private String name;
     private int capacity;

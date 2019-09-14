@@ -18,17 +18,17 @@ public class Inventory {
     @OneToOne(mappedBy = "inventory")
     private UserAccount account;
 
-//    @OneToOne
-//    private HerbBag herbBag;
-//
-//    public Inventory(){
-//        this.herbBag = new HerbBag();
-//    }
-//
-//    public HerbBag getHerbBag(){
-//        return this.herbBag;
-//    }
-//    public void setHerbBag(HerbBag herbBag){
-//        this.herbBag = herbBag;
-//    }
+    @OneToOne
+    private HerbBag herbBag;
+
+    public Inventory(){
+        this.herbBag = new HerbBag();
+    }
+
+    public HerbBag getHerbBag(){
+        return this.herbBag;
+    }
+    public void setHerbBag(HerbBag herbBag){
+        this.herbBag = herbBag;
+    }
 }
