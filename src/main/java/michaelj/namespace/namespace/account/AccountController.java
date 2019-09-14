@@ -1,10 +1,11 @@
 package michaelj.namespace.namespace.account;
 
+import michaelj.namespace.namespace.inventory.Inventory;
+import michaelj.namespace.namespace.inventory.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,10 @@ import java.security.Principal;
 public class AccountController {
 
     @Autowired
-    AccountRepo repo;
+    AccountRepo accountRepo;
+
+    @Autowired
+    InventoryRepo inventoryRepo;
 
     @Autowired
     PasswordEncoder encoder;
@@ -30,7 +34,7 @@ public class AccountController {
             Model model
     ) {
         try {
-            UserAccount user = repo.findByUsername(p.getName());
+            UserAccount user = accountRepo.findByUsername(p.getName());
             if (user != null) {
                 return "redirect:/dashboard/";
             }
@@ -49,11 +53,16 @@ public class AccountController {
             @RequestParam String username,
             @RequestParam String password
     ) throws DataIntegrityViolationException {
+
         UserAccount newUser = new UserAccount();
         newUser.setUsername(username);
         newUser.setPassword(password, this.encoder);
 
-        repo.save(newUser);
+        Inventory inventory = new Inventory();
+        newUser.setInventory(inventory);
+        inventoryRepo.save(inventory);
+
+        accountRepo.save(newUser);
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 newUser,
                 null,
