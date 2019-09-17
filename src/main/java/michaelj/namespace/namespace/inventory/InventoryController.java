@@ -25,6 +25,8 @@ public class InventoryController {
         UserAccount user = this.accountRepo.findByUsername(p.getName());
 
         model.addAttribute("bag", user.getInventory().getHerbBag().getName());
+        model.addAttribute("contentsKeys", user.getInventory().getHerbBag().getContentKeys());
+        model.addAttribute("contentValues", user.getInventory().getHerbBag().getCotentValues());
         return "herbology";
     }
 

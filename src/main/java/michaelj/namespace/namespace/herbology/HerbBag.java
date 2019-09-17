@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static michaelj.namespace.namespace.board.Dice.rollDice;
 
@@ -25,30 +23,30 @@ public class HerbBag {
     private String name;
     private int capacity;
 
-    private HashMap<String, Integer> stock;
+    private HashMap<String, Integer> contents;
 
     public HerbBag(){
         this.name = "Rough Homespun Herb Bag";
         this.capacity = 30;
-        this.stock = new HashMap<>();
+        this.contents = new HashMap<>();
     }
 
     public HerbBag(String name, int capacity){
         this.name = name;
         this.capacity = capacity;
-        this.stock = new HashMap<>();
+        this.contents = new HashMap<>();
     }
 
     public boolean checkHerbBag(String herb){
-        Boolean output = this.stock.containsKey(herb);
+        Boolean output = this.contents.containsKey(herb);
         return output;
     }
 
     public void bigTester(){
-        for(Map.Entry<String, Integer> entry : stock.entrySet()){
+        for(Map.Entry<String, Integer> entry : contents.entrySet()){
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
-        Set holder = stock.entrySet();
+        Set holder = contents.entrySet();
     }
 
     public void forageForHerbs(){
@@ -72,7 +70,7 @@ public class HerbBag {
     }
 
     public void addHerbToBag(String herb, int quanity){
-        this.stock.merge(herb, quanity, Integer::sum);
+        this.contents.merge(herb, quanity, Integer::sum);
     }
 
     private static String fieldHerbTable(int roll){
@@ -149,8 +147,6 @@ public class HerbBag {
         return herb;
     }
 
-
-
     //create function to decrement kvpair
     //create function to delete kvpair if 0;
 
@@ -162,9 +158,18 @@ public class HerbBag {
     public int getCapacity() {
         return capacity;
     }
-    public HashMap<String, Integer> getStock() {
-        return stock;
+    public HashMap<String, Integer> getContents() {
+        return contents;
     }
+    public List<String> getContentKeys(){
+        ArrayList<String> keyList = new ArrayList<String>(contents.keySet());
+        return keyList;
+    }
+    public List<Integer> getCotentValues(){
+        ArrayList<Integer> valueList = new ArrayList<Integer>(contents.values());
+        return valueList;
+    }
+
 
     //Setters
     public void setName(String name) {
