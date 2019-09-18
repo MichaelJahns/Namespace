@@ -18,13 +18,16 @@ public class InventoryController {
     AccountRepo accountRepo;
 
     @GetMapping("/herbology")
-    public String getCampaigns(
+    public String getHerbBag(
             Principal p,
             Model model
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
+        if(!user.getInventory().getHerbBag().getHerbContents().isEmpty()){
+            model.addAttribute("herbKeys", user.getInventory().getHerbBag().getContentKeys());
+            model.addAttribute("herbValues", user.getInventory().getHerbBag().getContentValues());
+        }
 
-        model.addAttribute("bag", user.getInventory().getHerbBag().getName());
         return "herbology";
     }
 

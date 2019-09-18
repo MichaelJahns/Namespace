@@ -70,6 +70,11 @@ public class AccountController {
         Inventory inventory = newUser.getInventory();
         HerbBag herbBag = inventory.getHerbBag();
         herbBag.forageForHerbs();
+        herbBag.forageForHerbs();
+        herbBag.forageForHerbs();
+        herbBag.forageForHerbs();
+        herbBag.forageForHerbs();
+
 
         saveAll(herbBag, inventory, newUser);
 

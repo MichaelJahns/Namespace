@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static michaelj.namespace.namespace.board.Dice.rollDice;
 
@@ -23,32 +21,21 @@ public class HerbBag {
     private Inventory inventory;
 
     private String name;
-    private int capacity;
 
-    private HashMap<String, Integer> stock;
+    private HashMap<String, Integer> herbContents;
+    private HashMap<String, Integer> reagentContents;
 
     public HerbBag(){
         this.name = "Rough Homespun Herb Bag";
-        this.capacity = 30;
-        this.stock = new HashMap<>();
+        this.herbContents = new HashMap<>();
+        this.reagentContents = new HashMap<>();
     }
 
-    public HerbBag(String name, int capacity){
+    public HerbBag(String name){
         this.name = name;
-        this.capacity = capacity;
-        this.stock = new HashMap<>();
-    }
+        this.herbContents = new HashMap<>();
+        this.reagentContents = new HashMap<>();
 
-    public boolean checkHerbBag(String herb){
-        Boolean output = this.stock.containsKey(herb);
-        return output;
-    }
-
-    public void bigTester(){
-        for(Map.Entry<String, Integer> entry : stock.entrySet()){
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
-        Set holder = stock.entrySet();
     }
 
     public void forageForHerbs(){
@@ -67,13 +54,14 @@ public class HerbBag {
             int tableRoll = rollDice(8);
             String reagentName = fieldReagentTable(tableRoll);
             int quantityFound = rollDice(6);
-            addHerbToBag(reagentName, quantityFound);
+            addReagentToBag(reagentName, quantityFound);
         }
     }
 
-    public void addHerbToBag(String herb, int quanity){
-        this.stock.merge(herb, quanity, Integer::sum);
+    public void addHerbToBag(String herb, int quantity){
+        this.herbContents.merge(herb, quantity, Integer::sum);
     }
+    public void addReagentToBag(String reagent, int quantity){ this.reagentContents.merge(reagent, quantity, Integer::sum);}
 
     private static String fieldHerbTable(int roll){
         String herb = "";
@@ -119,37 +107,35 @@ public class HerbBag {
     }
 
     private static String fieldReagentTable(int roll){
-        String herb = "";
+        String reagent = "";
         switch (roll) {
             case 1:
-                herb = "Snape Grass";
+                reagent = "Snape Grass";
                 break;
             case 2:
-                herb = "Limwurt root";
+                reagent = "Limwurt root";
                 break;
             case 3:
-                herb = "Eye of newt";
+                reagent = "Eye of newt";
                 break;
             case 4:
-                herb = "Red Spider's Eyes";
+                reagent = "Red Spider's Eyes";
                 break;
             case 5:
-                herb = "Mort Myre Fungus";
+                reagent = "Mort Myre Fungus";
                 break;
             case 6:
-                herb = "Toad's Legs";
+                reagent = "Toad's Legs";
                 break;
             case 7:
-                herb = "Potato Cactus";
+                reagent = "Potato Cactus";
                 break;
             case 8:
-                herb = "Snail Slime";
+                reagent = "Snail Slime";
                 break;
         }
-        return herb;
+        return reagent;
     }
-
-
 
     //create function to decrement kvpair
     //create function to delete kvpair if 0;
@@ -159,18 +145,23 @@ public class HerbBag {
     public String getName() {
         return name;
     }
-    public int getCapacity() {
-        return capacity;
+    public HashMap<String, Integer> getHerbContents() {
+        return herbContents;
     }
-    public HashMap<String, Integer> getStock() {
-        return stock;
+    public HashMap<String, Integer> getReagentContents() {return reagentContents;}
+
+    public List<String> getContentKeys(){
+        ArrayList<String> keyList = new ArrayList<>(herbContents.keySet());
+        return keyList;
     }
+    public List<Integer> getContentValues(){
+        ArrayList<Integer> valueList = new ArrayList<>(herbContents.values());
+        return valueList;
+    }
+
 
     //Setters
     public void setName(String name) {
         this.name = name;
-    }
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 }
