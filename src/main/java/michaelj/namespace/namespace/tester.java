@@ -10,7 +10,7 @@ public class tester {
         bates.getHerbBag().forageForHerbs();
 
         List<String> one = bates.getHerbBag().getContentKeys();
-        List<Integer> two = bates.getHerbBag().getCotentValues();
+        List<Integer> two = bates.getHerbBag().getContentValues();
 
         for(String item: one){
             System.out.println(item);
