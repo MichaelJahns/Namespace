@@ -22,19 +22,19 @@ public class HerbBag {
 
     private String name;
 
-    private HashMap<String, Integer> herbContents;
-    private HashMap<String, Integer> reagentContents;
+    private List<Ingredient> herbs;
+    private List<Ingredient> reagents;
 
     public HerbBag(){
-        this.name = "Rough Homespun Herb Bag";
-        this.herbContents = new HashMap<>();
-        this.reagentContents = new HashMap<>();
+        this.name = "Rough Homespun Ingredient Bag";
+        this.herbs = new ArrayList<>();
+        this.reagents = new ArrayList<>();
     }
 
     public HerbBag(String name){
         this.name = name;
-        this.herbContents = new HashMap<>();
-        this.reagentContents = new HashMap<>();
+        this.herbs = new ArrayList<>();
+        this.reagents = new ArrayList<>();
 
     }
 
@@ -44,7 +44,7 @@ public class HerbBag {
             int tableRoll = rollDice(12);
             String herbName = fieldHerbTable(tableRoll);
             int quantityFound = rollDice(6);
-            addHerbToBag(herbName, quantityFound);
+            storeInHerbologyBag(herbName, quantityFound, false);
         }
     }
 
@@ -54,14 +54,18 @@ public class HerbBag {
             int tableRoll = rollDice(8);
             String reagentName = fieldReagentTable(tableRoll);
             int quantityFound = rollDice(6);
-            addReagentToBag(reagentName, quantityFound);
+            storeInHerbologyBag(reagentName, quantityFound, true);
         }
     }
 
-    public void addHerbToBag(String herb, int quantity){
-        this.herbContents.merge(herb, quantity, Integer::sum);
+    public void storeInHerbologyBag(String ingredientName, int quantity, boolean isReagent){
+        Ingredient newIngredient = new Ingredient(ingredientName, quantity, isReagent);
+        if(isReagent){
+            reagents.add(newIngredient);
+        } else{
+            herbs.add(newIngredient);
+        }
     }
-    public void addReagentToBag(String reagent, int quantity){ this.reagentContents.merge(reagent, quantity, Integer::sum);}
 
     private static String fieldHerbTable(int roll){
         String herb = "";
@@ -145,23 +149,23 @@ public class HerbBag {
     public String getName() {
         return name;
     }
-    public HashMap<String, Integer> getHerbContents() {
-        return herbContents;
+    public List<Ingredient> getHerbs() {
+        return herbs;
     }
-    public HashMap<String, Integer> getReagentContents() {return reagentContents;}
-
-    public List<String> getContentKeys(){
-        ArrayList<String> keyList = new ArrayList<>(herbContents.keySet());
-        return keyList;
+    public List<Ingredient> getReagents() {
+        return reagents;
     }
-    public List<Integer> getContentValues(){
-        ArrayList<Integer> valueList = new ArrayList<>(herbContents.values());
-        return valueList;
-    }
-
 
     //Setters
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setHerbs(List<Ingredient> herbs) {
+        this.herbs = herbs;
+    }
+
+    public void setReagents(List<Ingredient> reagents) {
+        this.reagents = reagents;
     }
 }

@@ -9,18 +9,23 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1 th:text="${bag}"> </h1>
 <div>
-    <button> Passive Foraging  </button>
-    <button> Active Foraging </button>
-
-    <form>
-<!--        Input for manually adding a herb type, needs Name input and quantity, triggers functions -->
+    <form class="forage" action="/inventory/forage" method="Get">
+        <button type="submit"> Forage </button>
     </form>
+    <form>
+        <button> Long Rest </button>
+    </form>
+
 </div>
 
-
 <table th:replace="~{/fragments/inventoryFragments :: herbBag}"></table>
+
+<form class="manualStockHerbForm" action="/inventory/forage" method="post">
+    <input type="text" name="herbName" value="Herb Name">
+    <input type="number" name="herbQuantity" value="Number of herbs">
+    <button type="submit"> Manually Add </button>
+</form>
 
 
 </body>

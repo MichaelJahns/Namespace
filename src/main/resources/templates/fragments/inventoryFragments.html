@@ -12,12 +12,17 @@
         <th> Herb </th>
         <th> Quantity</th>
     </tr>
-    <tr th:each="herb : ${herbKeys}">
-        <td th:text="${herb}"></td>
+    <tr th:each="herb : ${herbs}">
+        <td th:text="${herb.name}"></td>
+        <td th:text="${herb.quantity}"></td>
     </tr>
-    <tr th:each="herb : ${herbValues}">
-        <td th:text="${herb}"></td>
+    <tr>
+        <th> Reagent </th>
+        <th> Quantity </th>
     </tr>
+    <tr th:each="reagent : ${reagents}">
+        <td th:text="${reagent.name}"></td>
+        <td th:text="${reagent.quantity}"></td>
     </tr>
 </table>
 
