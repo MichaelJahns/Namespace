@@ -13,7 +13,7 @@
         <th> Quantity</th>
     </tr>
     <tr th:each="herb : ${herbs}">
-        <td th:text="${herb.name}"></td>
+        <td th:text="${herb.herbName}"></td>
         <td th:text="${herb.quantity}"></td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
         <th> Quantity </th>
     </tr>
     <tr th:each="reagent : ${reagents}">
-        <td th:text="${reagent.name}"></td>
+        <td th:text="${reagent.reagentName}"></td>
         <td th:text="${reagent.quantity}"></td>
     </tr>
 </table>

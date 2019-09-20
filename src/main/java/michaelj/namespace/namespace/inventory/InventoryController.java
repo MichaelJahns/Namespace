@@ -2,8 +2,7 @@ package michaelj.namespace.namespace.inventory;
 
 import michaelj.namespace.namespace.account.AccountRepo;
 import michaelj.namespace.namespace.account.UserAccount;
-import michaelj.namespace.namespace.herbology.HerbBag;
-import michaelj.namespace.namespace.herbology.HerbBagRepo;
+import michaelj.namespace.namespace.herbology.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.jws.soap.SOAPBinding;
 import java.security.Principal;
 
+import static michaelj.namespace.namespace.board.Dice.rollDice;
+
 @Controller
 @RequestMapping("/inventory")
 public class InventoryController {
@@ -24,6 +25,12 @@ public class InventoryController {
 
     @Autowired
     HerbBagRepo herbBagRepo;
+
+    @Autowired
+    HerbRepo herbRepo;
+
+    @Autowired
+    ReagentRepo reagentRepo;
 
     @GetMapping("/herbology")
     public String getHerbBag(
@@ -46,9 +53,25 @@ public class InventoryController {
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
         HerbBag forageSatchel = user.getInventory().getHerbBag();
-        forageSatchel.forageForHerbs();
-        forageSatchel.forageForReagents();
-        this.herbBagRepo.save(forageSatchel);
+
+        int herbsFound = rollDice(6);
+        for(int i = 0; i < herbsFound; i++){
+            Herb foundHerb = new Herb();
+            foundHerb.setHerbPouch(forageSatchel);
+            herbRepo.save(foundHerb);
+            forageSatchel.addHerb(foundHerb);
+        }
+        int reagentsFound = rollDice(4);
+        for(int i = 0; i < reagentsFound; i++){
+            Reagent foundReagent = new Reagent();
+            foundReagent.setReagentPouch(forageSatchel);
+            reagentRepo.save(foundReagent);
+            forageSatchel.addReagent(foundReagent);
+        }
+
+        forageSatchel = herbBagRepo.save(forageSatchel);
+
+
 
         model.addAttribute("herbs", forageSatchel.getHerbs());
         model.addAttribute("reagents", forageSatchel.getReagents());
