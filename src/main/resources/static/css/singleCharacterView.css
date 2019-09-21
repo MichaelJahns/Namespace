@@ -1,0 +1,48 @@
+article{
+    margin: auto;
+    padding: 5%;
+
+    border: black 1px solid; 
+    width: 60%;
+    height: 1020px; 
+    border-collapse:collapse; 
+    background-color: rgb(221, 211, 189);
+    position:relative;
+}
+
+#table{
+background-color: brown;
+padding: 5%;
+}
+
+
+#singleCharacterViewDogEarredCorner {
+    width:0px;
+    height:0px;
+    border-top:brown 4em solid;   /*inside part*/
+    border-left: rgb(221, 211, 189) 5em solid;   /*outside part*/
+    position:absolute;
+    top: -1px;
+    right:-1px;
+    box-shadow: -3px 2px 5px 0px rgba(0,0,0,0.2);
+}
+
+#singleCharacterViewArticleLeft{
+    margin-top: 5%;
+    color: red;
+    align-content: left;
+    display: inline-block;
+    word-wrap: break-word;
+
+}
+
+#singleCharacterViewArticleRight{
+    color: blue;
+    align-content: right;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+#singleCharacterViewArticleBody{
+    color: green;
+}

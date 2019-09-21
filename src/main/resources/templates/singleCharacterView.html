@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments :: stylesheets}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<main>
+    <h1> Single Character View Page </h1>
+
+    <nav th:replace="~{fragments :: navbar}"></nav>
+
+
+
+    <div id="table">
+
+    <article>
+        <div id="singleCharacterViewArticleLeft">
+            <div>
+                <img> Character Posture Portrait
+            </div>
+        </div>
+
+        <div id="singleCharacterViewArticleRight">
+            <h2> Character Name </h2>
+            <h3> Character location </h3>
+            <p> Relationship to Player </p>
+            <p> Features </p>
+        </div>
+
+
+        <div id="singleCharacterViewArticleBody">
+            <p> Role </p>
+            <p> Mannerisms </p>
+            <p> Misc. </p>
+        </div>
+
+        <div id="singleCharacterViewDogEarredCorner">
+
+        </div>
+    </article>
+    </div>
+
+</main>
+
+</body>
+</html>
