@@ -84,6 +84,23 @@ public class HerbBag {
         return reagents;
     }
 
+    public Herb getHerbByName(String herbName){
+        for(Herb stockedHerb : this.herbs){
+            if(stockedHerb.getHerbName().equals(herbName)) {
+                return stockedHerb;
+            }
+        }
+        return null;
+    }
+    public Reagent getReagentByName(String reagentName){
+        for(Reagent stockedReagent : this.reagents){
+            if(stockedReagent.getReagentName().equals(reagentName)){
+                return stockedReagent;
+            }
+        }
+        return null;
+    }
+
     //Setters
 
     public void setHerbs(List<Herb> herbs) {

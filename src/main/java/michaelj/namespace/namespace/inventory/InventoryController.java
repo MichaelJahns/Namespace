@@ -55,18 +55,31 @@ public class InventoryController {
         HerbBag forageSatchel = user.getInventory().getHerbBag();
 
         int herbsFound = rollDice(6);
-        for(int i = 0; i < herbsFound; i++){
+        for(int i = 0; i < herbsFound; i++) {
             Herb foundHerb = new Herb();
-            foundHerb.setHerbPouch(forageSatchel);
-            herbRepo.save(foundHerb);
-            forageSatchel.addHerb(foundHerb);
+            Herb stockedHerb = forageSatchel.getHerbByName(foundHerb.getHerbName());
+            if (stockedHerb != null) {
+                stockedHerb.incrementQuantity(foundHerb.getQuantity());
+                herbRepo.save(stockedHerb);
+            } else {
+                foundHerb.setHerbPouch(forageSatchel);
+                herbRepo.save(foundHerb);
+                forageSatchel.addHerb(foundHerb);
+            }
         }
+
         int reagentsFound = rollDice(4);
         for(int i = 0; i < reagentsFound; i++){
             Reagent foundReagent = new Reagent();
-            foundReagent.setReagentPouch(forageSatchel);
-            reagentRepo.save(foundReagent);
-            forageSatchel.addReagent(foundReagent);
+            Reagent stockedReagent = forageSatchel.getReagentByName(foundReagent.getReagentName());
+            if(stockedReagent != null) {
+                stockedReagent.incrementQuantity(foundReagent.getQuantity());
+                reagentRepo.save(stockedReagent);
+            } else{
+                foundReagent.setReagentPouch(forageSatchel);
+                reagentRepo.save(foundReagent);
+                forageSatchel.addReagent(foundReagent);
+            }
         }
 
         forageSatchel = herbBagRepo.save(forageSatchel);
