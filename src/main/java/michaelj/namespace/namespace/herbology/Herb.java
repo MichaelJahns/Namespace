@@ -32,6 +32,12 @@ public class Herb{
         this.quantity = quantity;
     }
 
+    public Herb(String herbName, int quantity, HerbBag parent){
+        this.herbName = herbName;
+        this.quantity = quantity;
+        this.herbPouch = parent;
+    }
+
     private static String fieldHerbTable(int roll){
         String herb = "";
         switch (roll) {

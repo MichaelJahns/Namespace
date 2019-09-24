@@ -32,6 +32,12 @@ public class Reagent{
         this.quantity = quantity;
     }
 
+    public Reagent(String reagentName, int quantity, HerbBag parent){
+        this.reagentName = reagentName;
+        this.quantity = quantity;
+        this.reagentPouch = parent;
+    }
+
     private static String fieldReagentTable(int roll){
         String reagent = "";
         switch (roll) {

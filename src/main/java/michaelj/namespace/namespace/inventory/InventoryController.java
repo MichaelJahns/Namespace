@@ -4,12 +4,10 @@ import michaelj.namespace.namespace.account.AccountRepo;
 import michaelj.namespace.namespace.account.UserAccount;
 import michaelj.namespace.namespace.herbology.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.jws.soap.SOAPBinding;
 import java.security.Principal;
@@ -92,4 +90,53 @@ public class InventoryController {
         return "redirect:/inventory/herbology";
     }
 
+    @PostMapping("/addHerb")
+    public String addHerb(
+        Principal p,
+        Model m,
+        @RequestParam String herbName,
+        @RequestParam int quantity
+    ){
+        UserAccount user = this.accountRepo.findByUsername(p.getName());
+        HerbBag herbBag = user.getInventory().getHerbBag();
+
+        Herb stockedHerb = herbBag.getHerbByName(herbName);
+
+        if(stockedHerb != null){
+            stockedHerb.incrementQuantity(quantity);
+            herbRepo.save(stockedHerb);
+        } else{
+            Herb manualHerb = new Herb(herbName, quantity, herbBag);
+            herbRepo.save(manualHerb);
+            herbBag.addHerb(manualHerb);
+        }
+
+        herbBagRepo.save(herbBag);
+        return "redirect:/inventory/herbology";
+    }
+
+    @PostMapping("/addReagent")
+    public String addReagent(
+            Principal p,
+            Model m,
+            @RequestParam String reagentName,
+            @RequestParam int quantity
+    ){
+        UserAccount user = this.accountRepo.findByUsername(p.getName());
+        HerbBag herbBag = user.getInventory().getHerbBag();
+
+        Reagent stockedReagent = herbBag.getReagentByName(reagentName);
+
+        if(stockedReagent != null){
+            stockedReagent.incrementQuantity(quantity);
+            reagentRepo.save(stockedReagent);
+        } else{
+            Reagent manualReagent = new Reagent(reagentName, quantity, herbBag);
+            reagentRepo.save(manualReagent);
+            herbBag.addReagent(manualReagent);
+        }
+
+        herbBagRepo.save(herbBag);
+        return "redirect:/inventory/herbology";
+    }
 }
