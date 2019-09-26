@@ -2,10 +2,7 @@ package michaelj.namespace.namespace.herbology;
 
 import michaelj.namespace.namespace.inventory.Inventory;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.*;
 
 import static michaelj.namespace.namespace.board.Dice.rollDice;
@@ -20,148 +17,97 @@ public class HerbBag {
     @OneToOne(mappedBy = "herbBag")
     private Inventory inventory;
 
-    private String name;
 
-    private HashMap<String, Integer> herbContents;
-    private HashMap<String, Integer> reagentContents;
+    @OneToMany(mappedBy = "herbPouch")
+    private List<Herb> herbs;
+    @OneToMany(mappedBy = "reagentPouch")
+    private List<Reagent> reagents;
 
     public HerbBag(){
-        this.name = "Rough Homespun Herb Bag";
-        this.herbContents = new HashMap<>();
-        this.reagentContents = new HashMap<>();
+        this.herbs = new ArrayList<>();
+        this.reagents = new ArrayList<>();
     }
 
     public HerbBag(String name){
-        this.name = name;
-        this.herbContents = new HashMap<>();
-        this.reagentContents = new HashMap<>();
+        this.herbs = new ArrayList<>();
+        this.reagents = new ArrayList<>();
 
     }
 
-    public void forageForHerbs(){
-        int herbsFound = rollDice(4);
-        for(int i = 0 ; i < herbsFound ; i++){
-            int tableRoll = rollDice(12);
-            String herbName = fieldHerbTable(tableRoll);
-            int quantityFound = rollDice(6);
-            addHerbToBag(herbName, quantityFound);
+    public Herb isHerbPresent(String name){
+        for(Herb herb : this.herbs){
+            if(herb.getHerbName() == name){
+                return herb;
+            }
+        }
+        return null;
+    }
+
+    public Reagent isReagentPresent(String name){
+        for(Reagent reagent: this.reagents){
+            if(reagent.getReagentName() == name){
+                return reagent;
+            }
+        }
+        return null;
+    }
+
+    public void addHerb(Herb herb){
+        Herb foundHerb = isHerbPresent(herb.getHerbName());
+        if(foundHerb != null){
+            foundHerb.incrementQuantity(herb.getQuantity());
+        } else{
+            this.herbs.add(herb);
         }
     }
 
-    public void forageForReagents(){
-        int reagentsFound = rollDice(6);
-        for(int i = 0; i < reagentsFound ; i++){
-            int tableRoll = rollDice(8);
-            String reagentName = fieldReagentTable(tableRoll);
-            int quantityFound = rollDice(6);
-            addReagentToBag(reagentName, quantityFound);
+    public void addReagent(Reagent reagent){
+        Reagent foundReagent = isReagentPresent(reagent.getReagentName());
+        if(foundReagent != null){
+            foundReagent.incrementQuantity(reagent.getQuantity());
+        } else {
+            this.reagents.add(reagent);
         }
     }
 
-    public void addHerbToBag(String herb, int quantity){
-        this.herbContents.merge(herb, quantity, Integer::sum);
-    }
-    public void addReagentToBag(String reagent, int quantity){ this.reagentContents.merge(reagent, quantity, Integer::sum);}
 
-    private static String fieldHerbTable(int roll){
-        String herb = "";
-        switch (roll) {
-            case 1:
-                herb = "Ranarr Weed";
-                break;
-            case 2:
-                herb = "Tarromin";
-                break;
-            case 3:
-                herb = "Guarm Leaf";
-                break;
-            case 4:
-                herb = "Harrlander";
-                break;
-            case 5:
-                herb = "Avantoe";
-                break;
-            case 6:
-                herb = "Kwuarm";
-                break;
-            case 7:
-                herb = "Irit Leaf";
-                break;
-            case 8:
-                herb = "Snapedragon";
-                break;
-            case 9:
-                herb = "Lantadyme";
-                break;
-            case 10:
-                herb = "Cadantine";
-                break;
-            case 11:
-                herb = "ToadFlax";
-                break;
-            case 12:
-                herb = "Dwarf Weed";
-                break;
-        }
-        return herb;
-    }
-
-    private static String fieldReagentTable(int roll){
-        String reagent = "";
-        switch (roll) {
-            case 1:
-                reagent = "Snape Grass";
-                break;
-            case 2:
-                reagent = "Limwurt root";
-                break;
-            case 3:
-                reagent = "Eye of newt";
-                break;
-            case 4:
-                reagent = "Red Spider's Eyes";
-                break;
-            case 5:
-                reagent = "Mort Myre Fungus";
-                break;
-            case 6:
-                reagent = "Toad's Legs";
-                break;
-            case 7:
-                reagent = "Potato Cactus";
-                break;
-            case 8:
-                reagent = "Snail Slime";
-                break;
-        }
-        return reagent;
-    }
 
     //create function to decrement kvpair
     //create function to delete kvpair if 0;
 
 
     //Getters
-    public String getName() {
-        return name;
+    public List<Herb> getHerbs() {
+        return herbs;
     }
-    public HashMap<String, Integer> getHerbContents() {
-        return herbContents;
-    }
-    public HashMap<String, Integer> getReagentContents() {return reagentContents;}
-
-    public List<String> getContentKeys(){
-        ArrayList<String> keyList = new ArrayList<>(herbContents.keySet());
-        return keyList;
-    }
-    public List<Integer> getContentValues(){
-        ArrayList<Integer> valueList = new ArrayList<>(herbContents.values());
-        return valueList;
+    public List<Reagent> getReagents() {
+        return reagents;
     }
 
+    public Herb getHerbByName(String herbName){
+        for(Herb stockedHerb : this.herbs){
+            if(stockedHerb.getHerbName().equals(herbName)) {
+                return stockedHerb;
+            }
+        }
+        return null;
+    }
+    public Reagent getReagentByName(String reagentName){
+        for(Reagent stockedReagent : this.reagents){
+            if(stockedReagent.getReagentName().equals(reagentName)){
+                return stockedReagent;
+            }
+        }
+        return null;
+    }
 
     //Setters
-    public void setName(String name) {
-        this.name = name;
+
+    public void setHerbs(List<Herb> herbs) {
+        this.herbs = herbs;
+    }
+
+    public void setReagents(List<Reagent> reagents) {
+        this.reagents = reagents;
     }
 }

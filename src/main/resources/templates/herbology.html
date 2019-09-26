@@ -9,19 +9,61 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1 th:text="${bag}"> </h1>
 <div>
-    <button> Passive Foraging  </button>
-    <button> Active Foraging </button>
-
+    <form class="forage" action="/inventory/forage" method="Get">
+        <button type="submit"> Forage </button>
+    </form>
     <form>
-<!--        Input for manually adding a herb type, needs Name input and quantity, triggers functions -->
+        <button> Long Rest </button>
     </form>
 </div>
 
-
-<table th:replace="~{/fragments/inventoryFragments :: herbBag}"></table>
-
+<table class="herbBag">
+    <tr>
+        <th> Herb </th>
+        <th> Quantity</th>
+        <th> Image </th>
+    </tr>
+    <tr th:each="herb : ${herbs}">
+        <td th:text="${herb.herbName}"></td>
+        <td th:text="${herb.quantity}"></td>
+    </tr>
+    <form class="addHerb" action="/inventory/addHerb" method="Post">
+        <tr>
+            <td>
+                <input type="text" name="herbName" required placeholder="Herb Name">
+            </td>
+            <td>
+                <input type="number" name="quantity" required placeholder="Quantity">
+            </td>
+            <td>
+                <button type="submit"> Add Herb </button>
+            </td>
+        </tr>
+    </form>
+    <tr>
+        <th> Reagent </th>
+        <th> Quantity </th>
+        <th> Image </th>
+    </tr>
+    <tr th:each="reagent : ${reagents}">
+        <td th:text="${reagent.reagentName}"></td>
+        <td th:text="${reagent.quantity}"></td>
+    </tr>
+    <form class="addReagent" action="/inventory/addReagent" method="Post">
+        <tr>
+            <td>
+                <input type="text" name="reagentName" required placeholder="Reagent Name">
+            </td>
+            <td>
+                <input type="number" name="quantity" required placeholder="Quantity">
+            </td>
+            <td>
+                <button type="submit"> Add Reagent </button>
+            </td>
+        </tr>
+    </form>
+</table>
 
 </body>
 </html>

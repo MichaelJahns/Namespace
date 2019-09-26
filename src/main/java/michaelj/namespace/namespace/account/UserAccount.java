@@ -1,5 +1,6 @@
 package michaelj.namespace.namespace.account;
 
+import michaelj.namespace.namespace.campaign.Campaign;
 import michaelj.namespace.namespace.herbology.HerbBag;
 import michaelj.namespace.namespace.inventory.Inventory;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class UserAccount implements UserDetails {
@@ -23,6 +25,9 @@ public class UserAccount implements UserDetails {
 
     @OneToOne
     private Inventory inventory;
+
+//    @OneToMany (mappedBy = "userAccount")
+//    private List<Campaign> campaigns;
 
     public UserAccount(){}
 
@@ -81,4 +86,11 @@ public class UserAccount implements UserDetails {
     }
 
 
+//    public List<Campaign> getCampaigns() {
+//        return campaigns;
+//    }
+//
+//    public void setCampaigns(List<Campaign> campaigns) {
+//        this.campaigns = campaigns;
+//    }
 }

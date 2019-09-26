@@ -69,13 +69,6 @@ public class AccountController {
         UserAccount newUser = new UserAccount(username, password, this.encoder);
         Inventory inventory = newUser.getInventory();
         HerbBag herbBag = inventory.getHerbBag();
-        herbBag.forageForHerbs();
-        herbBag.forageForHerbs();
-        herbBag.forageForHerbs();
-        herbBag.forageForHerbs();
-        herbBag.forageForHerbs();
-
-
         saveAll(herbBag, inventory, newUser);
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(

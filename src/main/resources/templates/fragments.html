@@ -8,6 +8,8 @@
 
 <!--Stylesheets-->
 <head th:fragment="stylesheets">
+    <link href="/css/reset.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
     <link href="/css/table.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
     <link href="/css/dashboard.css" rel="stylesheet">
@@ -15,8 +17,19 @@
 
 <!--Navigation Bar-->
 <nav th:fragment="navbar" class="navbar">
-    <a href="/dashboard"> Dashboard </a>
-    <a href="/perform_logout"> Logout </a>
+
+    <div id="navBarItems">
+        <h1 id="titleCard"> Namespace </h1>
+        <a href="/dashboard"> Dashboard </a>
+        <a href="/perform_logout"> Logout </a>
+        <a href="/"> Placeholder </a>
+        <a href="/"> Placeholder </a>
+    </div>
+
+    <div id="accountControls">
+        <a href="/"> Account </a>
+        <a href="/"> Placeholder </a>
+    </div>
 </nav>
 
 </body>
