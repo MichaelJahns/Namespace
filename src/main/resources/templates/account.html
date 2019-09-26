@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments :: stylesheets}">
+
+    <meta charset="UTF-8">
+    <title> User Account </title>
+</head>
+
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+<h2 th:text="${user.username}"> User </h2>
+</body>
+</html>

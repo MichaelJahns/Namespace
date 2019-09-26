@@ -60,6 +60,16 @@ public class AccountController {
     @GetMapping("/signup")
     public String signup() {return "signUp"; }
 
+    @GetMapping("/account")
+    public String getAccountPage(
+            Principal p,
+            Model model
+    ){
+        UserAccount user = accountRepo.findByUsername(p.getName());
+        model.addAttribute("user", user);
+        return "account";
+    }
+
     @PostMapping("/signup")
     public String signup(
             @RequestParam String username,
@@ -83,7 +93,7 @@ public class AccountController {
             return "redirect:/dashboard";
         } else{
             model.addAttribute("errored", true);
-            return "redirect:/signup/";
+            return "redirect:/signup";
         }
 
 
