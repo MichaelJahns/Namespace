@@ -18,8 +18,11 @@
     justify-content: space-around;
 
 }
+#spacer{
+    width: 6%;
+}
 #accountControls{
-    width: 30%;
+    width: 24%;
     background-color: inherit;
 
     display: flex;

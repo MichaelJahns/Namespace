@@ -23,6 +23,7 @@
         <th> Herb </th>
         <th> Quantity</th>
         <th> Image </th>
+        <th> Options </th>
     </tr>
     <tr th:each="herb : ${herbs}">
         <td th:text="${herb.herbName}"></td>
@@ -36,6 +37,7 @@
             <td>
                 <input type="number" name="quantity" required placeholder="Quantity">
             </td>
+            <td> <img> </td>
             <td>
                 <button type="submit"> Add Herb </button>
             </td>
@@ -45,6 +47,7 @@
         <th> Reagent </th>
         <th> Quantity </th>
         <th> Image </th>
+        <th> Options </th>
     </tr>
     <tr th:each="reagent : ${reagents}">
         <td th:text="${reagent.reagentName}"></td>
@@ -58,11 +61,13 @@
             <td>
                 <input type="number" name="quantity" required placeholder="Quantity">
             </td>
+            <td> <img> </td>
             <td>
                 <button type="submit"> Add Reagent </button>
             </td>
         </tr>
     </form>
+
 </table>
 
 </body>

@@ -1,11 +1,11 @@
 package michaelj.namespace.namespace.account;
 
+import michaelj.namespace.namespace.error.AccountNameInUseException;
 import michaelj.namespace.namespace.herbology.HerbBag;
 import michaelj.namespace.namespace.herbology.HerbBagRepo;
 import michaelj.namespace.namespace.inventory.Inventory;
 import michaelj.namespace.namespace.inventory.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -63,21 +63,30 @@ public class AccountController {
     @PostMapping("/signup")
     public String signup(
             @RequestParam String username,
-            @RequestParam String password
+            @RequestParam String password,
+            Model model
     ) throws DataIntegrityViolationException {
 
-        UserAccount newUser = new UserAccount(username, password, this.encoder);
-        Inventory inventory = newUser.getInventory();
-        HerbBag herbBag = inventory.getHerbBag();
-        saveAll(herbBag, inventory, newUser);
+        UserAccount check = accountRepo.findByUsername(username);
+        if(check == null){
+            UserAccount newUser = new UserAccount(username, password, this.encoder);
+            Inventory inventory = newUser.getInventory();
+            HerbBag herbBag = inventory.getHerbBag();
+            saveAll(herbBag, inventory, newUser);
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                newUser,
-                null,
-                newUser.getAuthorities());
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                    newUser,
+                    null,
+                    newUser.getAuthorities());
 
-        SecurityContextHolder.getContext().setAuthentication(token);
-        return "redirect:/dashboard";
+            SecurityContextHolder.getContext().setAuthentication(token);
+            return "redirect:/dashboard";
+        } else{
+            model.addAttribute("errored", true);
+            return "redirect:/signup/";
+        }
+
+
     }
 
 }
