@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.jws.soap.SOAPBinding;
 import java.security.Principal;
+import java.util.Optional;
 
 import static michaelj.namespace.namespace.board.Dice.rollDice;
 
@@ -139,4 +140,21 @@ public class InventoryController {
         herbBagRepo.save(herbBag);
         return "redirect:/inventory/herbology";
     }
+
+    @PutMapping("/inventory/decrementReagent")
+    public String decrementReagent(
+            Principal p,
+            Model model,
+            @RequestParam Long reagentid
+    ){
+        Optional<Reagent> foundReagent = reagentRepo.findById(reagentid);
+        if(foundReagent.isPresent());
+
+
+    }
+    //put mapping, send up the request to decrement a herb or reagent of a certain name
+    //find the remaining quantity in the forageSatchel
+    //Decrement
+        //If 0, remove all pointers from Herb/Reagent
+        //Else, save repos
 }

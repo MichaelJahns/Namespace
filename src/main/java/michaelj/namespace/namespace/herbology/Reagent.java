@@ -85,6 +85,8 @@ public class Reagent{
     public void incrementQuantity(int quantity){
         this.quantity += quantity;
     }
+    public void decrementQuantity(int quantity) { this.quantity -= quantity; }
+
 
 
     public HerbBag getReagentPouch() {

@@ -9,15 +9,6 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<div>
-    <form class="forage" action="/inventory/forage" method="Get">
-        <button type="submit"> Forage </button>
-    </form>
-    <form>
-        <button> Long Rest </button>
-    </form>
-</div>
-
 <table class="herbBag">
     <tr>
         <th> Herb </th>
@@ -28,6 +19,13 @@
     <tr th:each="herb : ${herbs}">
         <td th:text="${herb.herbName}"></td>
         <td th:text="${herb.quantity}"></td>
+        <td> <img src="http://via.placeholder.com/30" alt="herbArt"> </td>
+        <td>
+            <form>
+                <button> Expend </button>
+                <button> Sell OUt </button>
+            </form>
+        </td>
     </tr>
     <form class="addHerb" action="/inventory/addHerb" method="Post">
         <tr>
@@ -37,7 +35,7 @@
             <td>
                 <input type="number" name="quantity" required placeholder="Quantity">
             </td>
-            <td> <img> </td>
+            <td></td>
             <td>
                 <button type="submit"> Add Herb </button>
             </td>
@@ -52,6 +50,14 @@
     <tr th:each="reagent : ${reagents}">
         <td th:text="${reagent.reagentName}"></td>
         <td th:text="${reagent.quantity}"></td>
+        <td> <img src="http://via.placeholder.com/30" alt="reagentArt"> </td>
+        <td>
+            <form class="decrementReagent" action="/inventory/decrementReagent" method="put">
+                <input type="hidden" name="reagentid" th:value="${reagent.id}"/>
+                <button type="submit"> Expend </button>
+            </form>
+        </td>
+
     </tr>
     <form class="addReagent" action="/inventory/addReagent" method="Post">
         <tr>
@@ -67,8 +73,16 @@
             </td>
         </tr>
     </form>
-
 </table>
+
+<div>
+    <form class="forage" action="/inventory/forage" method="Get">
+        <button type="submit"> Forage </button>
+    </form>
+    <form>
+        <button> Long Rest </button>
+    </form>
+</div>
 
 </body>
 </html>
