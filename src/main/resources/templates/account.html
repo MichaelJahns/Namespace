@@ -8,6 +8,10 @@
 
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
-<h2 th:text="${user.username}"> User </h2>
+    <div id="characterSheet">
+        <img src="http://via.placeholder.com/300" alt="accountImage"/>
+            <h2 class="label"> Username </h2>
+            <h2 th:text="${user.username}"> User </h2>
+    </div>
 </body>
 </html>

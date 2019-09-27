@@ -9,8 +9,7 @@
 
 <h1> Sign Up </h1>
 
-<p th:if="${errored}"> Something went wrong, try again </p>
-<p th:text="${errored}" >  </p>
+<p th:if="${errored}"> An account with that username already exists. Please, try again. </p>
     <div>
         <form class="form-input" action="/signup" method="post">
             <input type="text" name="username" required placeholder="Username"> </input>
