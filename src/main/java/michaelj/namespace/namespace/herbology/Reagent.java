@@ -96,4 +96,12 @@ public class Reagent{
     public void setReagentPouch(HerbBag reagentPouch) {
         this.reagentPouch = reagentPouch;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

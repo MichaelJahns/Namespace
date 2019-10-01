@@ -52,9 +52,9 @@
         <td th:text="${reagent.quantity}"></td>
         <td> <img src="http://via.placeholder.com/30" alt="reagentArt"> </td>
         <td>
-            <form class="decrementReagent" action="/inventory/decrementReagent" method="put">
-                <input type="hidden" name="reagentid" th:value="${reagent.id}"/>
-                <button type="submit"> Expend </button>
+            <form class="decrementReagent" th:action="@{/inventory/decrementReagent/} + ${reagent.id}" th:method="put">
+                <input type="hidden" name="id" th:value="${reagent.id}"/>
+                <button type="submit"> Expend 1 </button>
             </form>
         </td>
 

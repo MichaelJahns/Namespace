@@ -141,14 +141,29 @@ public class InventoryController {
         return "redirect:/inventory/herbology";
     }
 
-    @PutMapping("/inventory/decrementReagent")
+    @PutMapping("/decrementReagent/{id}")
     public String decrementReagent(
             Principal p,
             Model model,
-            @RequestParam Long reagentid
+            @PathVariable Long id
     ){
-        Optional<Reagent> foundReagent = reagentRepo.findById(reagentid);
-        if(foundReagent.isPresent());
+        UserAccount user = this.accountRepo.findByUsername(p.getName());
+        HerbBag herbBag = user.getInventory().getHerbBag();
+
+        Optional<Reagent> repoReagent = reagentRepo.findById(id);
+        if(repoReagent.isPresent()){
+            Reagent editReagent = repoReagent.get();
+            editReagent.decrementQuantity(1);
+            if(editReagent.getQuantity() >= 0){
+                herbBag.getReagents().remove(editReagent);
+            }else{
+                reagentRepo.save(editReagent);
+            }
+        }else{
+            System.out.println("opps");
+        }
+
+        herbBagRepo.save(herbBag);
 
         return "redirect:/inventory/herbBag";
     }
