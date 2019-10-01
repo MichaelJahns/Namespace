@@ -1,5 +1,7 @@
 package michaelj.namespace.namespace.account;
 
+import michaelj.namespace.namespace.alchemy.PotionSatchel;
+import michaelj.namespace.namespace.alchemy.PotionSatchelRepo;
 import michaelj.namespace.namespace.error.AccountNameInUseException;
 import michaelj.namespace.namespace.herbology.HerbBag;
 import michaelj.namespace.namespace.herbology.HerbBagRepo;
@@ -31,10 +33,14 @@ public class AccountController {
     HerbBagRepo herbBagRepo;
 
     @Autowired
+    PotionSatchelRepo potionSatchelRepo;
+
+    @Autowired
     PasswordEncoder encoder;
 
-    public void saveAll(HerbBag herbBag, Inventory inventory, UserAccount userAccount){
+    public void saveAll(HerbBag herbBag, PotionSatchel potionSatchel, Inventory inventory, UserAccount userAccount){
         herbBagRepo.save(herbBag);
+        potionSatchelRepo.save(potionSatchel);
         inventoryRepo.save(inventory);
         accountRepo.save(userAccount);
     }
@@ -72,7 +78,8 @@ public class AccountController {
             UserAccount newUser = new UserAccount(username, password, this.encoder);
             Inventory inventory = newUser.getInventory();
             HerbBag herbBag = inventory.getHerbBag();
-            saveAll(herbBag, inventory, newUser);
+            PotionSatchel potionSatchel = inventory.getPotionSatchel();
+            saveAll(herbBag, potionSatchel, inventory, newUser);
 
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     newUser,

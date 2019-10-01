@@ -150,7 +150,7 @@ public class InventoryController {
         Optional<Reagent> foundReagent = reagentRepo.findById(reagentid);
         if(foundReagent.isPresent());
 
-
+        return "redirect:/inventory/herbBag";
     }
     //put mapping, send up the request to decrement a herb or reagent of a certain name
     //find the remaining quantity in the forageSatchel
