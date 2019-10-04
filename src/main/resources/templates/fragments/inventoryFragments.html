@@ -47,5 +47,14 @@
     <button type="submit"> -1 </button>
 </form>
 
+<form th:fragment="incrementHerbForm" class="incrementHerb" th:action="@{/inventory/incrementHerb/} + ${herb.id}" th:method="put">
+    <input type="hidden" name="id" th:value="${herb.id}"/>
+    <button type="submit"> +1 </button>
+</form>
+
+<form th:fragment="incrementReagentForm" class="incrementReagent" th:action="@{/inventory/incrementReagent/} + ${reagent.id}" th:method="put">
+    <input type="hidden" name="id" th:value="${reagent.id}"/>
+    <button type="submit"> +1 </button>
+</form>
 </body>
 </html>
