@@ -7,7 +7,25 @@
 <body>
 
 
+<form th:fragment="manualAddReagentForm" class="addReagent" action="/inventory/addReagent" method="post">
+    <tr>
+        <td>
+            <input type="text" name="reagentName" required placeholder="Reagent Name">
+        </td>
+        <td>
+            <input type="number" name="quantity" required placeholder="Quantity">
+        </td>
+        <td> <img> </td>
+        <td>
+            <button type="submit"> Add Reagent </button>
+        </td>
+    </tr>
+</form>
 
+<form th:fragment="decrementReagentForm" class="decrementReagent" th:action="@{/inventory/decrementReagent/} + ${reagent.id}" th:method="put">
+    <input type="hidden" name="id" th:value="${reagent.id}"/>
+    <button type="submit"> Expend 1 </button>
+</form>
 
 </body>
 </html>

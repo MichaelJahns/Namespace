@@ -154,7 +154,8 @@ public class InventoryController {
         if(repoReagent.isPresent()){
             Reagent editReagent = repoReagent.get();
             editReagent.decrementQuantity(1);
-            if(editReagent.getQuantity() >= 0){
+            if(editReagent.getQuantity() <= 0){
+                editReagent.setReagentPouch(null);
                 herbBag.getReagents().remove(editReagent);
             }else{
                 reagentRepo.save(editReagent);
@@ -165,7 +166,7 @@ public class InventoryController {
 
         herbBagRepo.save(herbBag);
 
-        return "redirect:/inventory/herbBag";
+        return "redirect:/inventory/herbology";
     }
     //put mapping, send up the request to decrement a herb or reagent of a certain name
     //find the remaining quantity in the forageSatchel

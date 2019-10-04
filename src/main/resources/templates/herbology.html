@@ -52,27 +52,12 @@
         <td th:text="${reagent.quantity}"></td>
         <td> <img src="http://via.placeholder.com/30" alt="reagentArt"> </td>
         <td>
-            <form class="decrementReagent" th:action="@{/inventory/decrementReagent/} + ${reagent.id}" th:method="put">
-                <input type="hidden" name="id" th:value="${reagent.id}"/>
-                <button type="submit"> Expend 1 </button>
-            </form>
+            <form th:replace="~{fragments/inventoryFragments :: decrementReagentForm }"></form>
         </td>
-
     </tr>
-    <form class="addReagent" action="/inventory/addReagent" method="Post">
-        <tr>
-            <td>
-                <input type="text" name="reagentName" required placeholder="Reagent Name">
-            </td>
-            <td>
-                <input type="number" name="quantity" required placeholder="Quantity">
-            </td>
-            <td> <img> </td>
-            <td>
-                <button type="submit"> Add Reagent </button>
-            </td>
-        </tr>
-    </form>
+
+    <form th:replace="~{fragments/inventoryFragments :: manualAddReagentForm}"></form>
+
 </table>
 
 <div>
