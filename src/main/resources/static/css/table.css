@@ -21,3 +21,9 @@
   background-color: #4CAF50;
   color: white;
 }
+
+.forageOptions{
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+}
