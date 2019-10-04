@@ -21,26 +21,12 @@
         <td th:text="${herb.quantity}"></td>
         <td> <img src="http://via.placeholder.com/30" alt="herbArt"> </td>
         <td>
-            <form>
-                <button> Expend </button>
-                <button> Sell OUt </button>
-            </form>
+            <form th:replace="~{fragments/inventoryFragments :: decrementHerbForm }"></form>
         </td>
     </tr>
-    <form class="addHerb" action="/inventory/addHerb" method="Post">
-        <tr>
-            <td>
-                <input type="text" name="herbName" required placeholder="Herb Name">
-            </td>
-            <td>
-                <input type="number" name="quantity" required placeholder="Quantity">
-            </td>
-            <td></td>
-            <td>
-                <button type="submit"> Add Herb </button>
-            </td>
-        </tr>
-    </form>
+
+    <form th:replace="~{fragments/inventoryFragments :: manualAddHerbForm}"></form>
+
     <tr>
         <th> Reagent </th>
         <th> Quantity </th>

@@ -108,4 +108,12 @@ public class Herb{
     public void setHerbPouch(HerbBag herbPouch) {
         this.herbPouch = herbPouch;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
