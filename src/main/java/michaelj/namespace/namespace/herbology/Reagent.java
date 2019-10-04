@@ -85,6 +85,8 @@ public class Reagent{
     public void incrementQuantity(int quantity){
         this.quantity += quantity;
     }
+    public void decrementQuantity(int quantity) { this.quantity -= quantity; }
+
 
 
     public HerbBag getReagentPouch() {
@@ -93,5 +95,13 @@ public class Reagent{
 
     public void setReagentPouch(HerbBag reagentPouch) {
         this.reagentPouch = reagentPouch;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

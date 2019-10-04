@@ -13,22 +13,32 @@
     <link href="/css/table.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
     <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="/css/account.css" rel="stylesheet">
 </head>
 
 <!--Navigation Bar-->
 <nav th:fragment="navbar" class="navbar">
 
+<!--    TODO: I want dashboard and account to be a dropdown menu containing all related links-->
     <div id="navBarItems">
         <h1 id="titleCard"> Namespace </h1>
         <a href="/dashboard"> Dashboard </a>
-        <a href="/perform_logout"> Logout </a>
+<!--        Dashboard should have a dropdown option for every tile on the dashboard -->
+
         <a href="/"> Placeholder </a>
         <a href="/"> Placeholder </a>
+
+    </div>
+
+    <div id="spacer">
+
     </div>
 
     <div id="accountControls">
-        <a href="/"> Account </a>
-        <a href="/"> Placeholder </a>
+        <a href="/account"> Account </a>
+<!--        Account should be the most dynamic of the dropdowns, toggling from login/logout, it drop down should just have a link to userAccount and login/logout for now-->
+        <a href="/perform_logout"> Logout </a>
+
     </div>
 </nav>
 

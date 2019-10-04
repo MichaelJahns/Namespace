@@ -9,6 +9,43 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
+<table class="herbBag">
+    <tr>
+        <th> Herb </th>
+        <th> Quantity</th>
+        <th> Image </th>
+        <th> Options </th>
+    </tr>
+    <tr th:each="herb : ${herbs}">
+        <td th:text="${herb.herbName}"></td>
+        <td th:text="${herb.quantity}"></td>
+        <td> <img src="http://via.placeholder.com/30" alt="herbArt"> </td>
+        <td>
+            <form th:replace="~{fragments/inventoryFragments :: decrementHerbForm }"></form>
+        </td>
+    </tr>
+
+    <form th:replace="~{fragments/inventoryFragments :: manualAddHerbForm}"></form>
+
+    <tr>
+        <th> Reagent </th>
+        <th> Quantity </th>
+        <th> Image </th>
+        <th> Options </th>
+    </tr>
+    <tr th:each="reagent : ${reagents}">
+        <td th:text="${reagent.reagentName}"></td>
+        <td th:text="${reagent.quantity}"></td>
+        <td> <img src="http://via.placeholder.com/30" alt="reagentArt"> </td>
+        <td>
+            <form th:replace="~{fragments/inventoryFragments :: decrementReagentForm }"></form>
+        </td>
+    </tr>
+
+    <form th:replace="~{fragments/inventoryFragments :: manualAddReagentForm}"></form>
+
+</table>
+
 <div>
     <form class="forage" action="/inventory/forage" method="Get">
         <button type="submit"> Forage </button>
@@ -17,53 +54,6 @@
         <button> Long Rest </button>
     </form>
 </div>
-
-<table class="herbBag">
-    <tr>
-        <th> Herb </th>
-        <th> Quantity</th>
-        <th> Image </th>
-    </tr>
-    <tr th:each="herb : ${herbs}">
-        <td th:text="${herb.herbName}"></td>
-        <td th:text="${herb.quantity}"></td>
-    </tr>
-    <form class="addHerb" action="/inventory/addHerb" method="Post">
-        <tr>
-            <td>
-                <input type="text" name="herbName" required placeholder="Herb Name">
-            </td>
-            <td>
-                <input type="number" name="quantity" required placeholder="Quantity">
-            </td>
-            <td>
-                <button type="submit"> Add Herb </button>
-            </td>
-        </tr>
-    </form>
-    <tr>
-        <th> Reagent </th>
-        <th> Quantity </th>
-        <th> Image </th>
-    </tr>
-    <tr th:each="reagent : ${reagents}">
-        <td th:text="${reagent.reagentName}"></td>
-        <td th:text="${reagent.quantity}"></td>
-    </tr>
-    <form class="addReagent" action="/inventory/addReagent" method="Post">
-        <tr>
-            <td>
-                <input type="text" name="reagentName" required placeholder="Reagent Name">
-            </td>
-            <td>
-                <input type="number" name="quantity" required placeholder="Quantity">
-            </td>
-            <td>
-                <button type="submit"> Add Reagent </button>
-            </td>
-        </tr>
-    </form>
-</table>
 
 </body>
 </html>

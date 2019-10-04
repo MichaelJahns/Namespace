@@ -1,6 +1,7 @@
 package michaelj.namespace.namespace.inventory;
 
 import michaelj.namespace.namespace.account.UserAccount;
+import michaelj.namespace.namespace.alchemy.PotionSatchel;
 import michaelj.namespace.namespace.herbology.HerbBag;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,8 +22,12 @@ public class Inventory {
     @OneToOne
     private HerbBag herbBag;
 
+    @OneToOne
+    private PotionSatchel potionSatchel;
+
     public Inventory(){
         this.herbBag = new HerbBag();
+        this.potionSatchel = new PotionSatchel();
     }
 
     public HerbBag getHerbBag(){
@@ -30,5 +35,13 @@ public class Inventory {
     }
     public void setHerbBag(HerbBag herbBag){
         this.herbBag = herbBag;
+    }
+
+    public PotionSatchel getPotionSatchel() {
+        return potionSatchel;
+    }
+
+    public void setPotionSatchel(PotionSatchel potionSatchel) {
+        this.potionSatchel = potionSatchel;
     }
 }

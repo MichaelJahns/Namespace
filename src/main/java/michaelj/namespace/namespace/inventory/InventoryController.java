@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.jws.soap.SOAPBinding;
 import java.security.Principal;
+import java.util.Optional;
 
 import static michaelj.namespace.namespace.board.Dice.rollDice;
 
@@ -139,4 +140,65 @@ public class InventoryController {
         herbBagRepo.save(herbBag);
         return "redirect:/inventory/herbology";
     }
+
+    @PutMapping("/decrementReagent/{id}")
+    public String decrementReagent(
+            Principal p,
+            Model model,
+            @PathVariable Long id
+    ){
+        UserAccount user = this.accountRepo.findByUsername(p.getName());
+        HerbBag herbBag = user.getInventory().getHerbBag();
+
+        Optional<Reagent> repoReagent = reagentRepo.findById(id);
+        if(repoReagent.isPresent()){
+            Reagent editReagent = repoReagent.get();
+            editReagent.decrementQuantity(1);
+            if(editReagent.getQuantity() <= 0){
+                editReagent.setReagentPouch(null);
+                herbBag.getReagents().remove(editReagent);
+            }else{
+                reagentRepo.save(editReagent);
+            }
+        }else{
+            System.out.println("opps");
+        }
+
+        herbBagRepo.save(herbBag);
+
+        return "redirect:/inventory/herbology";
+    }
+
+    @PutMapping("/decrementHerb/{id}")
+    public String decrementHerb(
+            Principal p,
+            Model model,
+            @PathVariable Long id
+    ){
+        UserAccount user = this.accountRepo.findByUsername(p.getName());
+        HerbBag herbBag = user.getInventory().getHerbBag();
+
+        Optional<Herb> repoHerb = herbRepo.findById(id);
+        if(repoHerb.isPresent()){
+            Herb editHerb = repoHerb.get();
+            editHerb.decrementQuantity(1);
+            if(editHerb.getQuantity() <= 0){
+                editHerb.setHerbPouch(null);
+                herbBag.getHerbs().remove(editHerb);
+            }else{
+                herbRepo.save(editHerb);
+            }
+        }else{
+            System.out.println("opps");
+        }
+
+        herbBagRepo.save(herbBag);
+
+        return "redirect:/inventory/herbology";
+    }
+    //put mapping, send up the request to decrement a herb or reagent of a certain name
+    //find the remaining quantity in the forageSatchel
+    //Decrement
+        //If 0, remove all pointers from Herb/Reagent
+        //Else, save repos
 }
