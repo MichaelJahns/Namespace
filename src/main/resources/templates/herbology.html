@@ -22,6 +22,8 @@
         <td> <img src="http://via.placeholder.com/30" alt="herbArt"> </td>
         <td>
             <form th:replace="~{fragments/inventoryFragments :: decrementHerbForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: incrementHerbForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: deleteHerbForm } "></form>
         </td>
     </tr>
 
@@ -39,6 +41,8 @@
         <td> <img src="http://via.placeholder.com/30" alt="reagentArt"> </td>
         <td>
             <form th:replace="~{fragments/inventoryFragments :: decrementReagentForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: incrementReagentForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: deleteReagentForm } "></form>
         </td>
     </tr>
 
