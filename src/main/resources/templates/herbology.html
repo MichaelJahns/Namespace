@@ -9,24 +9,59 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
+<table class="herbBag">
+    <tr>
+        <th> Herb </th>
+        <th> Quantity</th>
+        <th> Image </th>
+        <th> Options </th>
+    </tr>
+
+    <tr th:each="herb : ${herbs}">
+        <td th:text="${herb.herbName}"></td>
+        <td th:text="${herb.quantity}"></td>
+        <td> <img src="http://via.placeholder.com/30" alt="herbArt"> </td>
+
+        <td class="forageOptions">
+            <form th:replace="~{fragments/inventoryFragments :: decrementHerbForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: incrementHerbForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: deleteHerbForm } "></form>
+        </td>
+    </tr>
+
+    <form th:replace="~{fragments/inventoryFragments :: manualAddHerbForm}"></form>
+
+</table>
+
+<table class="herbBag">
+    <tr>
+        <th> Reagent </th>
+        <th> Quantity </th>
+        <th> Image </th>
+        <th> Options </th>
+    </tr>
+
+    <tr th:each="reagent : ${reagents}">
+        <td th:text="${reagent.reagentName}"></td>
+        <td th:text="${reagent.quantity}"></td>
+        <td> <img src="http://via.placeholder.com/30" alt="reagentArt"> </td>
+
+        <td class="forageOptions">
+            <form th:replace="~{fragments/inventoryFragments :: decrementReagentForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: incrementReagentForm }"></form>
+            <form th:replace="~{fragments/inventoryFragments :: deleteReagentForm } "></form>
+        </td>
+    </tr>
+
+    <form th:replace="~{fragments/inventoryFragments :: manualAddReagentForm}"></form>
+
+</table>
+
 <div>
     <form class="forage" action="/inventory/forage" method="Get">
         <button type="submit"> Forage </button>
     </form>
-    <form>
-        <button> Long Rest </button>
-    </form>
-
 </div>
-
-<table th:replace="~{/fragments/inventoryFragments :: herbBag}"></table>
-
-<form class="manualStockHerbForm" action="/inventory/forage" method="post">
-    <input type="text" name="herbName" value="Herb Name">
-    <input type="number" name="herbQuantity" value="Number of herbs">
-    <button type="submit"> Manually Add </button>
-</form>
-
 
 </body>
 </html>

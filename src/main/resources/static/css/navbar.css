@@ -1,6 +1,40 @@
-
-a{
-text-decoration: none;
-color: rgb(26, 115, 232);
+.navbar a{
+    color: whitesmoke;
 }
+.navbar{
+    width:100%;
+    height: 50px;;
+    background-color: black;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+#navBarItems{
+    width: 70%;
+    background-color: inherit;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+#spacer{
+    width: 6%;
+}
+#accountControls{
+    width: 24%;
+    background-color: inherit;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#titleCard{
+    color: Brown;
+    font-size: 1.5em;
+    text-decoration: underline;
+}
+
+
 

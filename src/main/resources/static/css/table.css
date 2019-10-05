@@ -1,7 +1,8 @@
 .herbBag {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 75%;
+  margin: auto;
 }
 
 .herbBag td, #customers th {
@@ -19,4 +20,10 @@
   text-align: left;
   background-color: #4CAF50;
   color: white;
+}
+
+.forageOptions{
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
 }

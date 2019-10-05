@@ -7,24 +7,66 @@
 <body>
 
 
-<table class="herbBag" th:fragment="herbBag">
+<form th:fragment="manualAddHerbForm" class="addHerb" action="/inventory/addHerb" method="post">
     <tr>
-        <th> Herb </th>
-        <th> Quantity</th>
+        <td>
+            <input type="text" name="herbName" required placeholder="Herb Name">
+        </td>
+        <td>
+            <input type="number" name="quantity" required placeholder="Quantity">
+        </td>
+        <td></td>
+        <td>
+            <button type="submit"> Add Herb </button>
+        </td>
     </tr>
-    <tr th:each="herb : ${herbs}">
-        <td th:text="${herb.herbName}"></td>
-        <td th:text="${herb.quantity}"></td>
-    </tr>
+</form>
+
+<form th:fragment="manualAddReagentForm" class="addReagent" action="/inventory/addReagent" method="post">
     <tr>
-        <th> Reagent </th>
-        <th> Quantity </th>
+        <td>
+            <input type="text" name="reagentName" required placeholder="Reagent Name">
+        </td>
+        <td>
+            <input type="number" name="quantity" required placeholder="Quantity">
+        </td>
+        <td> <img> </td>
+        <td>
+            <button type="submit"> Add Reagent </button>
+        </td>
     </tr>
-    <tr th:each="reagent : ${reagents}">
-        <td th:text="${reagent.reagentName}"></td>
-        <td th:text="${reagent.quantity}"></td>
-    </tr>
-</table>
+</form>
+
+<form th:fragment="incrementHerbForm" class="incrementHerb" th:action="@{/inventory/incrementHerb/} + ${herb.id}" th:method="put">
+    <input type="hidden" name="id" th:value="${herb.id}"/>
+    <button type="submit"> + </button>
+</form>
+
+<form th:fragment="decrementHerbForm" class="decrementHerb" th:action="@{/inventory/decrementHerb/} + ${herb.id}" th:method="put">
+    <input type="hidden" name="id" th:value="${herb.id}"/>
+    <button type="submit"> - </button>
+</form>
+
+<form th:fragment="deleteHerbForm" class="deleteHerb" th:action="@{/inventory/deleteHerb/} + ${herb.id}" th:method="delete">
+    <input type="hidden" name="id" th:value="${herb.id}"/>
+    <button type="submit"> X </button>
+</form>
+
+
+<form th:fragment="incrementReagentForm" class="incrementReagent" th:action="@{/inventory/incrementReagent/} + ${reagent.id}" th:method="put">
+    <input type="hidden" name="id" th:value="${reagent.id}"/>
+    <button type="submit"> + </button>
+</form>
+
+<form th:fragment="decrementReagentForm" class="decrementReagent" th:action="@{/inventory/decrementReagent/} + ${reagent.id}" th:method="put">
+    <input type="hidden" name="id" th:value="${reagent.id}"/>
+    <button type="submit"> - </button>
+</form>
+
+<form th:fragment="deleteReagentForm" class="deleteReagent" th:action="@{/inventory/deleteReagent/} + ${reagent.id}" th:method="delete">
+    <input type="hidden" name="id" th:value="${reagent.id}"/>
+    <button type="submit"> X </button>
+</form>
 
 </body>
 </html>

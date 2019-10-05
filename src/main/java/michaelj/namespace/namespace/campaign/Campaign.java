@@ -3,6 +3,7 @@ package michaelj.namespace.namespace.campaign;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 
 @Entity
@@ -13,6 +14,9 @@ public class Campaign {
     private String gameMaster;
     private ArrayList<String> players;
 
+//    @ManyToOne
+//    private long userAccount;
+
     public Campaign(){
         players = new ArrayList<>();
     }
@@ -22,4 +26,11 @@ public class Campaign {
     }
 
 
+//    public long getUserAccount() {
+//        return userAccount;
+//    }
+//
+//    public void setUserAccount(long userAccount) {
+//        this.userAccount = userAccount;
+//    }
 }

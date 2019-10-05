@@ -32,6 +32,12 @@ public class Herb{
         this.quantity = quantity;
     }
 
+    public Herb(String herbName, int quantity, HerbBag parent){
+        this.herbName = herbName;
+        this.quantity = quantity;
+        this.herbPouch = parent;
+    }
+
     private static String fieldHerbTable(int roll){
         String herb = "";
         switch (roll) {
@@ -93,6 +99,7 @@ public class Herb{
     public void incrementQuantity(int quantity){
         this.quantity += quantity;
     }
+    public void decrementQuantity(int quantity) { this.quantity -= quantity; }
 
     public HerbBag getHerbPouch() {
         return herbPouch;
@@ -100,5 +107,13 @@ public class Herb{
 
     public void setHerbPouch(HerbBag herbPouch) {
         this.herbPouch = herbPouch;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

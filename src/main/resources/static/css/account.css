@@ -1,0 +1,16 @@
+#characterSheet{
+display: flex;
+width: 70%;
+margin: auto;
+outline: red dotted 2px;
+padding: 20px;
+}
+
+.label{
+font-size: 1.25em;
+text-decoration: underline;
+display: block;
+}
+h2{
+font-size: 1.13em;
+}

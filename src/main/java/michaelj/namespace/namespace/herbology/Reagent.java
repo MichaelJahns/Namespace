@@ -32,6 +32,12 @@ public class Reagent{
         this.quantity = quantity;
     }
 
+    public Reagent(String reagentName, int quantity, HerbBag parent){
+        this.reagentName = reagentName;
+        this.quantity = quantity;
+        this.reagentPouch = parent;
+    }
+
     private static String fieldReagentTable(int roll){
         String reagent = "";
         switch (roll) {
@@ -79,6 +85,8 @@ public class Reagent{
     public void incrementQuantity(int quantity){
         this.quantity += quantity;
     }
+    public void decrementQuantity(int quantity) { this.quantity -= quantity; }
+
 
 
     public HerbBag getReagentPouch() {
@@ -87,5 +95,13 @@ public class Reagent{
 
     public void setReagentPouch(HerbBag reagentPouch) {
         this.reagentPouch = reagentPouch;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
