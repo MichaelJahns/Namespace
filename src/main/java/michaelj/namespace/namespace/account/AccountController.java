@@ -1,10 +1,9 @@
 package michaelj.namespace.namespace.account;
 
-import michaelj.namespace.namespace.alchemy.PotionSatchel;
-import michaelj.namespace.namespace.alchemy.PotionSatchelRepo;
-import michaelj.namespace.namespace.error.AccountNameInUseException;
-import michaelj.namespace.namespace.herbology.HerbBag;
-import michaelj.namespace.namespace.herbology.HerbBagRepo;
+import michaelj.namespace.namespace.inventory.alchemy.PotionSatchel;
+import michaelj.namespace.namespace.inventory.alchemy.PotionSatchelRepo;
+import michaelj.namespace.namespace.inventory.herbology.HerbBag;
+import michaelj.namespace.namespace.inventory.herbology.HerbBagRepo;
 import michaelj.namespace.namespace.inventory.Inventory;
 import michaelj.namespace.namespace.inventory.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;

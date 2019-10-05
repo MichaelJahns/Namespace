@@ -1,4 +1,4 @@
-package michaelj.namespace.namespace.herbology;
+package michaelj.namespace.namespace.inventory.herbology;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,10 +15,10 @@ public class Herb{
     private long id;
 
     @ManyToOne
-    private HerbBag herbPouch;
+    protected HerbBag herbPouch;
 
-    private String herbName;
-    private int quantity;
+    protected String herbName;
+    protected int quantity;
 
     public Herb(){
         int quantityFound = rollDice(6);

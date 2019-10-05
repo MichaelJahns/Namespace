@@ -1,4 +1,4 @@
-package michaelj.namespace.namespace.campaign;
+package michaelj.namespace.namespace.campaign.character;
 
 import javax.swing.*;
 

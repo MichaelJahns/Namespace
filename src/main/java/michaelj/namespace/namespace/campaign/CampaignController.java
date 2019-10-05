@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import sun.misc.Request;
 
 import java.security.Principal;
 
@@ -17,22 +20,36 @@ public class CampaignController {
     @Autowired
     AccountRepo accountRepo;
 
+    @Autowired
+    CampaignRepo campaignRepo;
+
     @GetMapping()
     public String getCampaigns(
             Principal p,
             Model model
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
+
+        model.addAttribute("campaigns", user.getCampaigns());
         return "campaign";
     }
 
-    @GetMapping("/singleCharacterView")
-    public String getSingleCharacterView(
+    @PostMapping("/createCampaign")
+    public String createCampaign(
             Principal p,
-            Model model
+            Model model,
+            @RequestParam String campaignMoniker,
+            @RequestParam String campaignWorld
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        return "singleCharacterView";
+
+        Campaign newCampaign = new Campaign(campaignMoniker, campaignWorld, user);
+        campaignRepo.save(newCampaign);
+        user.addCampaign(newCampaign);
+
+        accountRepo.save(user);
+
+        return "redirect:/campaign";
     }
 
 }

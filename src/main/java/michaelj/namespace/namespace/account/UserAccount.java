@@ -1,15 +1,13 @@
 package michaelj.namespace.namespace.account;
 
 import michaelj.namespace.namespace.campaign.Campaign;
-import michaelj.namespace.namespace.herbology.HerbBag;
 import michaelj.namespace.namespace.inventory.Inventory;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,8 +24,8 @@ public class UserAccount implements UserDetails {
     @OneToOne
     private Inventory inventory;
 
-//    @OneToMany (mappedBy = "userAccount")
-//    private List<Campaign> campaigns;
+    @OneToMany (mappedBy = "userAccount")
+    private List<Campaign> campaigns;
 
     public UserAccount(){}
 
@@ -35,6 +33,11 @@ public class UserAccount implements UserDetails {
         this.username = username;
         this.password = encoder.encode(password);
         this.inventory = new Inventory();
+        this.campaigns = new ArrayList<>();
+    }
+
+    public void addCampaign(Campaign campaign){
+        this.campaigns.add(campaign);
     }
 
     //Getters
@@ -86,11 +89,11 @@ public class UserAccount implements UserDetails {
     }
 
 
-//    public List<Campaign> getCampaigns() {
-//        return campaigns;
-//    }
-//
-//    public void setCampaigns(List<Campaign> campaigns) {
-//        this.campaigns = campaigns;
-//    }
+    public List<Campaign> getCampaigns() {
+        return campaigns;
+    }
+
+    public void setCampaigns(List<Campaign> campaigns) {
+        this.campaigns = campaigns;
+    }
 }

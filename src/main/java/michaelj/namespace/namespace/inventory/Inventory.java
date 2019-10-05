@@ -1,9 +1,8 @@
 package michaelj.namespace.namespace.inventory;
 
 import michaelj.namespace.namespace.account.UserAccount;
-import michaelj.namespace.namespace.alchemy.PotionSatchel;
-import michaelj.namespace.namespace.herbology.HerbBag;
-import org.springframework.beans.factory.annotation.Autowired;
+import michaelj.namespace.namespace.inventory.alchemy.PotionSatchel;
+import michaelj.namespace.namespace.inventory.herbology.HerbBag;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
