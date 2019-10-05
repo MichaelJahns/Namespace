@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>NavBar</title>
+    <title> Fragments </title>
 </head>
+
 <body>
 
-<!--Stylesheets-->
-<head th:fragment="stylesheets">
-    <link href="/css/reset.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/table.css" rel="stylesheet">
-    <link href="/css/navbar.css" rel="stylesheet">
-    <link href="/css/dashboard.css" rel="stylesheet">
-    <link href="/css/singleCharacterView.css" rel="stylesheet">
-    <link href="/css/account.css" rel="stylesheet">
-</head>
+    <!--Stylesheets-->
 
-<!--Navigation Bar-->
-<nav th:fragment="navbar" class="navbar">
+    <head th:fragment="stylesheets">
+        <link href="/css/reset.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
+        <link href="/css/table.css" rel="stylesheet">
+        <link href="/css/navbar.css" rel="stylesheet">
+        <link href="/css/dashboard.css" rel="stylesheet">
+        <link href="/css/singleCharacterView.css" rel="stylesheet">
+        <link href="/css/account.css" rel="stylesheet">
+    </head>
 
-<!--    TODO: I want dashboard and account to be a dropdown menu containing all related links-->
-    <div id="navBarItems">
-        <h1 id="titleCard"> Namespace </h1>
-        <a href="/dashboard"> Dashboard </a>
-<!--        Dashboard should have a dropdown option for every tile on the dashboard -->
+    <!--Navigation Bar-->
+    <nav th:fragment="navbar" class="navbar">
 
-        <a href="/"> Placeholder </a>
-        <a href="/"> Placeholder </a>
+        <!--    TODO: I want dashboard and account to be a dropdown menu containing all related links-->
+        <div id="navBarItems">
+            <h1 id="titleCard"> Namespace </h1>
+            <a href="/dashboard"> Dashboard </a>
+            <!--        Dashboard should have a dropdown option for every tile on the dashboard -->
 
-    </div>
+            <a href="/"> Placeholder </a>
+            <a href="/"> Placeholder </a>
 
-    <div id="spacer">
+        </div>
 
-    </div>
+        <div id="spacer">
 
-    <div id="accountControls">
-        <a href="/account"> Account </a>
-<!--        Account should be the most dynamic of the dropdowns, toggling from login/logout, it drop down should just have a link to userAccount and login/logout for now-->
-        <a href="/perform_logout"> Logout </a>
+        </div>
 
-    </div>
-</nav>
+        <div id="accountControls">
+            <a href="/account"> Account </a>
+            <!--        Account should be the most dynamic of the dropdowns, toggling from login/logout, it drop down should just have a link to userAccount and login/logout for now-->
+            <a href="/perform_logout"> Logout </a>
+
+        </div>
+    </nav>
 
 </body>
+
 </html>
