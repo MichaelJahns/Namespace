@@ -1,41 +1,104 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="~{fragments :: stylesheets}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-    <h1> My Campaigns</h1>
-    <button> Create Campaign </button>
+<table class="herbBag">
+    <form autocomplete="off" class="createCampaign" action="/campaign/createCampaign" method="post">
+        <tr>
+            <th> Moniker </th>
+            <td>
+                <input type="text" name="campaignMoniker" required placeholder="Campaign Moniker">
+            </td>
+            <td>
+                The first inn, adventuring party name, a notable antagonist, or a capital city </label>
+            </td>
+        </tr>
 
-    <main>
-        <aside>
-            List of all campaigns, when clicked generates the other aside
-                <div>
-                    New Campaign
-                </div>
-                <div th:each="campaign : ${campaigns}"
-                        th:text="${campaign.name}"
-                        th:value="${campaign.id}">
-                </div>
-            </select>
-        </aside>
+        <tr>
+            <th> World </th>
+            <td>
+                <input type="text" name="campaignWorld" placeholder="Campaign World">
+            </td>
+            <td>
+                The fantasy world your campaign takes place in
+            </td>
+        </tr>
 
-        <aside>
-            A list of all characters inside of a campaign, organizable by importance, recent, or alphabetical
-            <div>
-                <form>
-                New Character
-                </form>
-            </div>
+        <tr>
+            <td>
+                <button type="submit"> New Campaign </button>
+            </td>
+        </tr>
 
-            <div th:each="character : ${characters}"
-                 th:text="${character.name}"
-                 th:value="${character.id}">
-            </div>
-        </aside>
-    </main>
+
+
+    </form>
+</table>
+
+<table class="herbBag">
+    <tr>
+        <th> Campaign </th>
+        <td> ID </td>
+        <td> World </td>
+    </tr>
+    <tr th:each="campaign : ${campaigns}">
+        <td>
+            <a th:text="${campaign.moniker}" th:href="@{${'/campaign/' + campaign.id}}"/>
+        </td>
+        <td th:text="${campaign.id}"></td>
+        <td th:text="${campaign.world}"></td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <h1> My Campaigns</h1>-->
+<!--    <button> Create Campaign </button>-->
+
+<!--    <p> If you need help thinking of a good way to differentiate your campaigns try using the name of the first inn, or capital city </p>-->
+<!--    <main>-->
+<!--        <aside>-->
+<!--            List of all campaigns, when clicked generates the other aside-->
+<!--                <div>-->
+<!--                    New Campaign-->
+<!--                </div>-->
+<!--                <div th:each="campaign : ${campaigns}"-->
+<!--                        th:text="${campaign.name}"-->
+<!--                        th:value="${campaign.id}">-->
+<!--                </div>-->
+<!--            </select>-->
+<!--        </aside>-->
+
+<!--        <aside>-->
+<!--            A list of all characters inside of a campaign, organizable by importance, recent, or alphabetical-->
+<!--            <div>-->
+<!--                <form>-->
+<!--                New Character-->
+<!--                </form>-->
+<!--            </div>-->
+
+<!--            <div th:each="character : ${characters}"-->
+<!--                 th:text="${character.name}"-->
+<!--                 th:value="${character.id}">-->
+<!--            </div>-->
+<!--        </aside>-->
+<!--    </main>-->
 </body>
 </html>

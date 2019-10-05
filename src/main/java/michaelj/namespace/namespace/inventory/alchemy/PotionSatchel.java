@@ -1,6 +1,5 @@
-package michaelj.namespace.namespace.alchemy;
+package michaelj.namespace.namespace.inventory.alchemy;
 
-import michaelj.namespace.namespace.herbology.Herb;
 import michaelj.namespace.namespace.inventory.Inventory;
 
 import javax.persistence.*;

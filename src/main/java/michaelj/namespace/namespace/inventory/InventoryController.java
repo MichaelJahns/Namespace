@@ -1,18 +1,13 @@
 package michaelj.namespace.namespace.inventory;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import michaelj.namespace.namespace.account.AccountRepo;
 import michaelj.namespace.namespace.account.UserAccount;
-import michaelj.namespace.namespace.herbology.*;
+import michaelj.namespace.namespace.inventory.herbology.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
-import javax.jws.soap.SOAPBinding;
-import javax.swing.text.html.Option;
 import java.security.Principal;
 import java.util.Optional;
 

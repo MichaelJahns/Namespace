@@ -1,6 +1,4 @@
-package michaelj.namespace.namespace.alchemy;
-
-import org.springframework.web.bind.annotation.GetMapping;
+package michaelj.namespace.namespace.inventory.alchemy;
 
 import javax.persistence.*;
 

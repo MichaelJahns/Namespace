@@ -1,4 +1,4 @@
-package michaelj.namespace.namespace.herbology;
+package michaelj.namespace.namespace.inventory.herbology;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

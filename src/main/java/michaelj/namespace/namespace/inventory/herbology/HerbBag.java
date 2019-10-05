@@ -1,11 +1,9 @@
-package michaelj.namespace.namespace.herbology;
+package michaelj.namespace.namespace.inventory.herbology;
 
 import michaelj.namespace.namespace.inventory.Inventory;
 
 import javax.persistence.*;
 import java.util.*;
-
-import static michaelj.namespace.namespace.board.Dice.rollDice;
 
 
 @Entity
