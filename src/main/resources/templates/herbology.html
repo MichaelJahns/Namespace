@@ -11,16 +11,16 @@
 
 <table class="herbBag">
     <tr>
+        <th> Image </th>
         <th> Herb </th>
         <th> Quantity</th>
-        <th> Image </th>
         <th> Options </th>
     </tr>
 
     <tr th:each="herb : ${herbs}">
+        <td> <img src="http://via.placeholder.com/50" alt="herbArt"> </td>
         <td th:text="${herb.herbName}"></td>
         <td th:text="${herb.quantity}"></td>
-        <td> <img src="http://via.placeholder.com/30" alt="herbArt"> </td>
 
         <td class="forageOptions">
             <form th:replace="~{fragments/inventoryFragments :: decrementHerbForm }"></form>
@@ -35,17 +35,16 @@
 
 <table class="herbBag">
     <tr>
+        <th> Image </th>
         <th> Reagent </th>
         <th> Quantity </th>
-        <th> Image </th>
         <th> Options </th>
     </tr>
 
     <tr th:each="reagent : ${reagents}">
+        <td> <img src="http://via.placeholder.com/50" alt="reagentArt"> </td>
         <td th:text="${reagent.reagentName}"></td>
         <td th:text="${reagent.quantity}"></td>
-        <td> <img src="http://via.placeholder.com/30" alt="reagentArt"> </td>
-
         <td class="forageOptions">
             <form th:replace="~{fragments/inventoryFragments :: decrementReagentForm }"></form>
             <form th:replace="~{fragments/inventoryFragments :: incrementReagentForm }"></form>

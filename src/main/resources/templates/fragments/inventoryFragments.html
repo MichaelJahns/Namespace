@@ -11,13 +11,13 @@
 
     <form th:fragment="manualAddHerbForm" class="addHerb" action="/inventory/addHerb" method="post">
         <tr>
+            <td> </td>
             <td>
                 <input type="text" name="herbName" required placeholder="Herb Name">
             </td>
             <td>
                 <input type="number" name="quantity" required placeholder="Quantity">
             </td>
-            <td></td>
             <td>
                 <button type="submit"> Add Herb </button>
             </td>
@@ -26,13 +26,13 @@
 
     <form th:fragment="manualAddReagentForm" class="addReagent" action="/inventory/addReagent" method="post">
         <tr>
+            <td></td>
             <td>
                 <input type="text" name="reagentName" required placeholder="Reagent Name">
             </td>
             <td>
                 <input type="number" name="quantity" required placeholder="Quantity">
             </td>
-            <td> <img> </td>
             <td>
                 <button type="submit"> Add Reagent </button>
             </td>
