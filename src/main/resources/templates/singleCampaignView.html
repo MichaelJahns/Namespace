@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="~{fragments :: stylesheets}">
+
+    <meta charset="UTF-8">
+    <title> Single Campaign </title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments :: navbar}"></nav>
+
+    <form autocomplete="off" class="updateCampaign" th:action="@{/campaign/} + ${campaign.id}" method="put">
+        <input type="text" th:value="${campaign.moniker}" name="campaignMoniker" required placeholder="Campaign Moniker" />
+        <input type="text" th:value="${campaign.world}" name="campaignWorld" required placeholder="Campaign World" />
+        <button type="submit"> Update Campaign </button>
+    </form>
+
+
+</body>
+
+</html>
