@@ -12,6 +12,7 @@ import sun.misc.Request;
 
 import javax.swing.text.html.Option;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -65,6 +66,8 @@ public class CampaignController {
         if(foundCampaign.isPresent()){
             Campaign singleCampaign = foundCampaign.get();
             model.addAttribute("campaign", singleCampaign);
+            List<UserAccount> allUsers= accountRepo.findAll();
+            model.addAttribute("allUsers", allUsers);
         }
 
         return "singleCampaignView";

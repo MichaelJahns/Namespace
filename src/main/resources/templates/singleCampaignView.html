@@ -16,6 +16,12 @@
         <button type="submit"> Update Campaign </button>
     </form>
 
+<!-- TODO: This grabs every player by name, give players and campaigns the option to not be selected in this process, ie. set account/campaign to private    -->
+<select>
+    <option th:each="user : ${allUsers}" th:value="${user.username}" th:text="${user.username}"/>
+</select>
+
+
 
 </body>
 
