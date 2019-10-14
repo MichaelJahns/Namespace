@@ -1,4 +1,4 @@
-.herbBag {
+.forageSatchel {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 75%;
@@ -7,24 +7,24 @@
   overflow: hidden;
 }
 
-.herbBag th:nth-child(1){
+.forageSatchel th:nth-child(1){
   width: 75px;
 }
-.herbBag td:nth-child(1){
+.forageSatchel td:nth-child(1){
   width: 75px;
 }
 
-.herbBag td{
+.forageSatchel td{
   border: 1px solid #ddd;
   padding: 8px;
   height: 22px;
 }
 
-.herbBag tr:nth-child(even){background-color: #f2f2f2;}
+.forageSatchel tr:nth-child(even){background-color: #f2f2f2;}
 
-.herbBag tr:hover {background-color: #ddd;}
+.forageSatchel tr:hover {background-color: #ddd;}
 
-.herbBag th {
+.forageSatchel th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;

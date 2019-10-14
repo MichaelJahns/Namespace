@@ -2,7 +2,7 @@ package michaelj.namespace.namespace.inventory;
 
 import michaelj.namespace.namespace.account.UserAccount;
 import michaelj.namespace.namespace.inventory.alchemy.PotionSatchel;
-import michaelj.namespace.namespace.inventory.herbology.HerbBag;
+import michaelj.namespace.namespace.inventory.herbology.ForageSatchel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,27 +19,25 @@ public class Inventory {
     private UserAccount account;
 
     @OneToOne
-    private HerbBag herbBag;
+    private ForageSatchel forageSatchel;
 
     @OneToOne
     private PotionSatchel potionSatchel;
 
     public Inventory(){
-        this.herbBag = new HerbBag();
+        this.forageSatchel = new ForageSatchel();
         this.potionSatchel = new PotionSatchel();
     }
 
-    public HerbBag getHerbBag(){
-        return this.herbBag;
+    public ForageSatchel getForageSatchel(){
+        return this.forageSatchel;
     }
-    public void setHerbBag(HerbBag herbBag){
-        this.herbBag = herbBag;
+    public void setForageSatchel(ForageSatchel forageSatchel){
+        this.forageSatchel = forageSatchel;
     }
-
     public PotionSatchel getPotionSatchel() {
         return potionSatchel;
     }
-
     public void setPotionSatchel(PotionSatchel potionSatchel) {
         this.potionSatchel = potionSatchel;
     }

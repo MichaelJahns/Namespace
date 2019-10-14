@@ -5,14 +5,15 @@ import michaelj.namespace.namespace.inventory.Inventory;
 import javax.persistence.*;
 import java.util.*;
 
-
+// TODO: refactor to forageSatchel
+// TODO: alphateize method, incorporate into save routes
 @Entity
-public class HerbBag {
+public class ForageSatchel {
     @GeneratedValue
     @Id
     private long id;
 
-    @OneToOne(mappedBy = "herbBag")
+    @OneToOne(mappedBy = "forageSatchel")
     private Inventory inventory;
 
 
@@ -21,12 +22,12 @@ public class HerbBag {
     @OneToMany(mappedBy = "reagentPouch")
     private List<Reagent> reagents;
 
-    public HerbBag(){
+    public ForageSatchel(){
         this.herbs = new ArrayList<>();
         this.reagents = new ArrayList<>();
     }
 
-    public HerbBag(String name){
+    public ForageSatchel(String name){
         this.herbs = new ArrayList<>();
         this.reagents = new ArrayList<>();
 
@@ -68,14 +69,10 @@ public class HerbBag {
         }
     }
 
-
-
-    //create function to decrement kvpair
-    //create function to delete kvpair if 0;
-
-
     //Getters
     public List<Herb> getHerbs() {
+//        alphabetize first
+//        rank by rarity too?
         return herbs;
     }
     public List<Reagent> getReagents() {

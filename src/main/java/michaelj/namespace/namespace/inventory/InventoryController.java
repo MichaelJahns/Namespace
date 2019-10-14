@@ -21,7 +21,7 @@ public class InventoryController {
     AccountRepo accountRepo;
 
     @Autowired
-    HerbBagRepo herbBagRepo;
+    ForageSatchelRepo forageSatchelRepo;
 
     @Autowired
     HerbRepo herbRepo;
@@ -35,7 +35,7 @@ public class InventoryController {
             Model model
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag forageSatchel = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         model.addAttribute("herbs", forageSatchel.getHerbs());
         model.addAttribute("reagents", forageSatchel.getReagents());
@@ -49,7 +49,7 @@ public class InventoryController {
             Model model
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag forageSatchel = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         int herbsFound = rollDice(6);
         for(int i = 0; i < herbsFound; i++) {
@@ -79,7 +79,7 @@ public class InventoryController {
             }
         }
 
-        forageSatchel = herbBagRepo.save(forageSatchel);
+        forageSatchel = forageSatchelRepo.save(forageSatchel);
 
 
 
@@ -97,20 +97,20 @@ public class InventoryController {
         @RequestParam int quantity
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
-        Herb stockedHerb = herbBag.getHerbByName(herbName);
+        Herb stockedHerb = forageSatchel.getHerbByName(herbName);
 
         if(stockedHerb != null){
             stockedHerb.incrementQuantity(quantity);
             herbRepo.save(stockedHerb);
         } else{
-            Herb manualHerb = new Herb(herbName, quantity, herbBag);
+            Herb manualHerb = new Herb(herbName, quantity, forageSatchel);
             herbRepo.save(manualHerb);
-            herbBag.addHerb(manualHerb);
+            forageSatchel.addHerb(manualHerb);
         }
 
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
         return "redirect:/inventory/herbology";
     }
 
@@ -121,7 +121,7 @@ public class InventoryController {
             @PathVariable Long id
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         Optional<Herb> repoHerb = herbRepo.findById(id);
         if(repoHerb.isPresent()){
@@ -132,7 +132,7 @@ public class InventoryController {
             }
             herbRepo.save(editHerb);
         }
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
 
         return "redirect:/inventory/herbology";
     }
@@ -144,7 +144,7 @@ public class InventoryController {
             @PathVariable Long id
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         Optional<Herb> repoHerb = herbRepo.findById(id);
         if(repoHerb.isPresent()){
@@ -152,7 +152,7 @@ public class InventoryController {
             editHerb.decrementQuantity(1);
             if(editHerb.getQuantity() <= 0){
                 editHerb.setHerbPouch(null);
-                herbBag.getHerbs().remove(editHerb);
+                forageSatchel.getHerbs().remove(editHerb);
             }else{
                 herbRepo.save(editHerb);
             }
@@ -160,7 +160,7 @@ public class InventoryController {
             System.out.println("opps");
         }
 
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
 
         return "redirect:/inventory/herbology";
     }
@@ -172,17 +172,17 @@ public class InventoryController {
             @PathVariable Long id
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         Optional<Herb> repoHerb = herbRepo.findById(id);
         if(repoHerb.isPresent()){
             Herb deleteHerb = repoHerb.get();
             deleteHerb.setHerbPouch(null);
-            herbBag.getHerbs().remove(deleteHerb);
+            forageSatchel.getHerbs().remove(deleteHerb);
             herbRepo.delete(deleteHerb);
         }
 
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
 
         return "redirect:/inventory/herbology";
     }
@@ -195,20 +195,20 @@ public class InventoryController {
             @RequestParam int quantity
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
-        Reagent stockedReagent = herbBag.getReagentByName(reagentName);
+        Reagent stockedReagent = forageSatchel.getReagentByName(reagentName);
 
         if(stockedReagent != null){
             stockedReagent.incrementQuantity(quantity);
             reagentRepo.save(stockedReagent);
         } else{
-            Reagent manualReagent = new Reagent(reagentName, quantity, herbBag);
+            Reagent manualReagent = new Reagent(reagentName, quantity, forageSatchel);
             reagentRepo.save(manualReagent);
-            herbBag.addReagent(manualReagent);
+            forageSatchel.addReagent(manualReagent);
         }
 
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
         return "redirect:/inventory/herbology";
     }
 
@@ -219,7 +219,7 @@ public class InventoryController {
             @PathVariable Long id
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         Optional<Reagent> repoReagent = reagentRepo.findById(id);
         if(repoReagent.isPresent()){
@@ -230,7 +230,7 @@ public class InventoryController {
             }
             reagentRepo.save(editReagent);
         }
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
 
         return "redirect:/inventory/herbology";
     }
@@ -242,7 +242,7 @@ public class InventoryController {
             @PathVariable Long id
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         Optional<Reagent> repoReagent = reagentRepo.findById(id);
         if(repoReagent.isPresent()){
@@ -250,7 +250,7 @@ public class InventoryController {
             editReagent.decrementQuantity(1);
             if(editReagent.getQuantity() <= 0){
                 editReagent.setReagentPouch(null);
-                herbBag.getReagents().remove(editReagent);
+                forageSatchel.getReagents().remove(editReagent);
             }else{
                 reagentRepo.save(editReagent);
             }
@@ -258,7 +258,7 @@ public class InventoryController {
             System.out.println("opps");
         }
 
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
 
         return "redirect:/inventory/herbology";
     }
@@ -270,17 +270,17 @@ public class InventoryController {
             @PathVariable Long id
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
-        HerbBag herbBag = user.getInventory().getHerbBag();
+        ForageSatchel forageSatchel = user.getInventory().getForageSatchel();
 
         Optional<Reagent> repoReagent = reagentRepo.findById(id);
         if(repoReagent.isPresent()){
             Reagent deleteReagent = repoReagent.get();
             deleteReagent.setReagentPouch(null);
-            herbBag.getReagents().remove(deleteReagent);
+            forageSatchel.getReagents().remove(deleteReagent);
             reagentRepo.delete(deleteReagent);
         }
 
-        herbBagRepo.save(herbBag);
+        forageSatchelRepo.save(forageSatchel);
 
         return "redirect:/inventory/herbology";
     }

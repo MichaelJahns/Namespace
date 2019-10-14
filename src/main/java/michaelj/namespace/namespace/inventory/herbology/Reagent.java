@@ -15,7 +15,7 @@ public class Reagent{
     private long id;
 
     @ManyToOne
-    private HerbBag reagentPouch;
+    private ForageSatchel reagentPouch;
 
     private String reagentName;
     private int quantity;
@@ -32,7 +32,7 @@ public class Reagent{
         this.quantity = quantity;
     }
 
-    public Reagent(String reagentName, int quantity, HerbBag parent){
+    public Reagent(String reagentName, int quantity, ForageSatchel parent){
         this.reagentName = reagentName;
         this.quantity = quantity;
         this.reagentPouch = parent;
@@ -89,11 +89,11 @@ public class Reagent{
 
 
 
-    public HerbBag getReagentPouch() {
+    public ForageSatchel getReagentPouch() {
         return reagentPouch;
     }
 
-    public void setReagentPouch(HerbBag reagentPouch) {
+    public void setReagentPouch(ForageSatchel reagentPouch) {
         this.reagentPouch = reagentPouch;
     }
 
