@@ -1,6 +1,7 @@
 package michaelj.namespace.namespace.campaign;
 
 import michaelj.namespace.namespace.account.UserAccount;
+import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,30 +16,39 @@ public class Campaign {
     private long id;
 
     @ManyToOne
-    private UserAccount userAccount;
-
+    private UserAccount createdBy;
     private String moniker;
     private String world;
+    @ManyToOne
+    private UserAccount dungeonMaster;
     private ArrayList<String> players;
 
     public Campaign() {
         this.players = new ArrayList<>();
     }
 
-    public Campaign(String moniker, String world, UserAccount userAccount){
+    public Campaign(UserAccount createdBy, String moniker, String world){
+        this.createdBy = createdBy;
         this.moniker = moniker;
         this.world = world;
+        this.dungeonMaster = null;
         this.players = new ArrayList<>();
-        this.userAccount = userAccount;
     }
 
+    public Campaign(UserAccount createdBy, String moniker, String world, UserAccount DM){
+        this.createdBy = createdBy;
+        this.moniker = moniker;
+        this.world = world;
+        this.dungeonMaster = DM;
+        this.players = new ArrayList<>();
+    }
 
-//  Getters
+    //  Getters
     public long getId() {
         return id;
     }
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public UserAccount getCreatedBy() {
+        return createdBy;
     }
     public String getMoniker() {
         return moniker;
@@ -49,13 +59,16 @@ public class Campaign {
     public ArrayList<String> getPlayers() {
         return players;
     }
+    public UserAccount getDungeonMaster() {
+        return dungeonMaster;
+    }
 
-//  Setters
+    //  Setters
     public void setId(long id) {
         this.id = id;
     }
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setCreatedBy(UserAccount createdBy) {
+        this.createdBy = createdBy;
     }
     public void setMoniker(String moniker) {
         this.moniker = moniker;
@@ -65,5 +78,8 @@ public class Campaign {
     }
     public void setPlayers(ArrayList<String> players) {
         this.players = players;
+    }
+    public void setDungeonMaster(UserAccount dungeonMaster) {
+        this.dungeonMaster = dungeonMaster;
     }
 }

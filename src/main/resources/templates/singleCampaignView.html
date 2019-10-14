@@ -13,8 +13,15 @@
     <form autocomplete="off" class="updateCampaign" th:action="@{/campaign/} + ${campaign.id}" method="put">
         <input type="text" th:value="${campaign.moniker}" name="campaignMoniker" required placeholder="Campaign Moniker" />
         <input type="text" th:value="${campaign.world}" name="campaignWorld" required placeholder="Campaign World" />
+        <span th:text="${campaign.dungeonMaster}"/>
         <button type="submit"> Update Campaign </button>
     </form>
+
+<!-- TODO: This grabs every player by name, give players and campaigns the option to not be selected in this process, ie. set account/campaign to private    -->
+<select>
+    <option th:each="user : ${allUsers}" th:value="${user.username}" th:text="${user.username}"/>
+</select>
+
 
 
 </body>

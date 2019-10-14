@@ -24,8 +24,11 @@ public class UserAccount implements UserDetails {
     @OneToOne
     private Inventory inventory;
 
-    @OneToMany (mappedBy = "userAccount")
+    @OneToMany (mappedBy = "createdBy")
     private List<Campaign> campaigns;
+
+    @OneToMany (mappedBy = "dungeonMaster")
+    private List<Campaign> dungeonMasters;
 
     public UserAccount(){}
 
@@ -95,5 +98,10 @@ public class UserAccount implements UserDetails {
 
     public void setCampaigns(List<Campaign> campaigns) {
         this.campaigns = campaigns;
+    }
+
+    @Override
+    public String toString() {
+        return this.getUsername();
     }
 }

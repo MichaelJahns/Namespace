@@ -15,7 +15,7 @@ public class Herb{
     private long id;
 
     @ManyToOne
-    protected HerbBag herbPouch;
+    protected ForageSatchel herbPouch;
 
     protected String herbName;
     protected int quantity;
@@ -32,7 +32,7 @@ public class Herb{
         this.quantity = quantity;
     }
 
-    public Herb(String herbName, int quantity, HerbBag parent){
+    public Herb(String herbName, int quantity, ForageSatchel parent){
         this.herbName = herbName;
         this.quantity = quantity;
         this.herbPouch = parent;
@@ -101,11 +101,11 @@ public class Herb{
     }
     public void decrementQuantity(int quantity) { this.quantity -= quantity; }
 
-    public HerbBag getHerbPouch() {
+    public ForageSatchel getHerbPouch() {
         return herbPouch;
     }
 
-    public void setHerbPouch(HerbBag herbPouch) {
+    public void setHerbPouch(ForageSatchel herbPouch) {
         this.herbPouch = herbPouch;
     }
 

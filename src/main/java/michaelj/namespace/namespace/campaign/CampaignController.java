@@ -12,6 +12,7 @@ import sun.misc.Request;
 
 import javax.swing.text.html.Option;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -40,14 +41,19 @@ public class CampaignController {
             Principal p,
             Model model,
             @RequestParam String campaignMoniker,
-            @RequestParam String campaignWorld
+            @RequestParam String campaignWorld,
+            @RequestParam(required = false) Boolean isUserDM
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
+        Campaign newCampaign;
+        if(isUserDM){
+            newCampaign = new Campaign(user, campaignMoniker, campaignWorld, user);
+        }else{
+            newCampaign = new Campaign(user, campaignMoniker, campaignWorld);
 
-        Campaign newCampaign = new Campaign(campaignMoniker, campaignWorld, user);
-        campaignRepo.save(newCampaign);
+        }
         user.addCampaign(newCampaign);
-
+        campaignRepo.save(newCampaign);
         accountRepo.save(user);
 
         return "redirect:/campaign";
@@ -65,6 +71,8 @@ public class CampaignController {
         if(foundCampaign.isPresent()){
             Campaign singleCampaign = foundCampaign.get();
             model.addAttribute("campaign", singleCampaign);
+            List<UserAccount> allUsers= accountRepo.findAll();
+            model.addAttribute("allUsers", allUsers);
         }
 
         return "singleCampaignView";

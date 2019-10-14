@@ -2,8 +2,8 @@ package michaelj.namespace.namespace.account;
 
 import michaelj.namespace.namespace.inventory.alchemy.PotionSatchel;
 import michaelj.namespace.namespace.inventory.alchemy.PotionSatchelRepo;
-import michaelj.namespace.namespace.inventory.herbology.HerbBag;
-import michaelj.namespace.namespace.inventory.herbology.HerbBagRepo;
+import michaelj.namespace.namespace.inventory.herbology.ForageSatchel;
+import michaelj.namespace.namespace.inventory.herbology.ForageSatchelRepo;
 import michaelj.namespace.namespace.inventory.Inventory;
 import michaelj.namespace.namespace.inventory.InventoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class AccountController {
     InventoryRepo inventoryRepo;
 
     @Autowired
-    HerbBagRepo herbBagRepo;
+    ForageSatchelRepo forageSatchelRepo;
 
     @Autowired
     PotionSatchelRepo potionSatchelRepo;
@@ -37,8 +37,8 @@ public class AccountController {
     @Autowired
     PasswordEncoder encoder;
 
-    public void saveAll(HerbBag herbBag, PotionSatchel potionSatchel, Inventory inventory, UserAccount userAccount){
-        herbBagRepo.save(herbBag);
+    public void saveAll(ForageSatchel forageSatchel, PotionSatchel potionSatchel, Inventory inventory, UserAccount userAccount){
+        forageSatchelRepo.save(forageSatchel);
         potionSatchelRepo.save(potionSatchel);
         inventoryRepo.save(inventory);
         accountRepo.save(userAccount);
@@ -76,9 +76,9 @@ public class AccountController {
         if(check == null){
             UserAccount newUser = new UserAccount(username, password, this.encoder);
             Inventory inventory = newUser.getInventory();
-            HerbBag herbBag = inventory.getHerbBag();
+            ForageSatchel forageSatchel = inventory.getForageSatchel();
             PotionSatchel potionSatchel = inventory.getPotionSatchel();
-            saveAll(herbBag, potionSatchel, inventory, newUser);
+            saveAll(forageSatchel, potionSatchel, inventory, newUser);
 
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     newUser,
