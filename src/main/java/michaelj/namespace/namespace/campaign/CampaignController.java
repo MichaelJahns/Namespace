@@ -78,4 +78,18 @@ public class CampaignController {
         return "singleCampaignView";
     }
 
+    @PostMapping("/newCharacter")
+    public String createCharacter(
+            Principal p,
+            Model model,
+            @RequestParam String characterName,
+            @RequestParam String characterDescription,
+            @RequestParam String characterLocation,
+            @RequestParam String characterSpeech,
+            @RequestParam Boolean characterIsNPC
+    ){
+        Character newChar = new Character(characterName, characterDescription, characterLocation, characterSpeech);
+        return "redirect:/campaign";
+    }
+
 }

@@ -4,3 +4,13 @@
     margin: auto;
     align-content: center;
 }
+
+.addCharacterForm{
+outline: 2px red solid;
+width: 30%;
+margin: auto;
+}
+
+.addCharacterForm *{
+display: inline-block;
+}

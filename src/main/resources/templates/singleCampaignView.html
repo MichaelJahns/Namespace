@@ -17,6 +17,32 @@
         <button type="submit"> Update Campaign </button>
     </form>
 
+    <form autocomplete="off" class="addCharacterForm" action="/campaign/newCharacter" method="post">
+        <h5> New Character </h5>
+        </br>
+        <label>
+            Name
+            <input type="text" name="characterName" required placeholder="Name">
+        </label>
+        <label>
+            Description
+            <input type="text" name="characterDescription" required placeholder="Description">
+        </label>
+        <label>
+            Location
+            <input type="text" name="characterLocation" required placeholder="Location">
+        </label>
+        <label>
+            Speech Patterns
+            <input type="text" name="characterSpeech" required placeholder="Speech Patterns">
+        </label>
+        <label>
+            Is Character an NPC?
+            <input type="checkbox" name="characterIsNPC">
+        </label>
+        <button type="submit"> Create. </button>
+    </form>
+
 <!-- TODO: This grabs every player by name, give players and campaigns the option to not be selected in this process, ie. set account/campaign to private    -->
 <select>
     <option th:each="user : ${allUsers}" th:value="${user.username}" th:text="${user.username}"/>
