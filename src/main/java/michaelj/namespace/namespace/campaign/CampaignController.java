@@ -1,16 +1,13 @@
 package michaelj.namespace.namespace.campaign;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import michaelj.namespace.namespace.account.AccountRepo;
 import michaelj.namespace.namespace.account.UserAccount;
+import michaelj.namespace.namespace.campaign.character.Character;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.Request;
 
-import javax.swing.text.html.Option;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -88,7 +85,7 @@ public class CampaignController {
             @RequestParam String characterSpeech,
             @RequestParam Boolean characterIsNPC
     ){
-        Character newChar = new Character(characterName, characterDescription, characterLocation, characterSpeech);
+        Character newChar = new Character(characterName, characterDescription, characterLocation, characterSpeech, characterIsNPC);
         return "redirect:/campaign";
     }
 

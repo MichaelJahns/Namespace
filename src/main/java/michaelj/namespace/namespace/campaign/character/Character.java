@@ -1,5 +1,6 @@
 package michaelj.namespace.namespace.campaign.character;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
@@ -18,10 +19,11 @@ public class Character {
     private String speechMannerisms;
     private Boolean isNPC;
 
-    public Character(String name, String description, String location, String speech){
+    public Character(String name, String description, String location, String speech, Boolean isNPC){
         this.name = name;
         this.description = description;
         this.location = location;
         this.speechMannerisms = speech;
+        this.isNPC = isNPC;
     }
 }
