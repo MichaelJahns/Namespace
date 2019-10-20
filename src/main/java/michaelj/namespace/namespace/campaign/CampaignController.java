@@ -3,6 +3,7 @@ package michaelj.namespace.namespace.campaign;
 import michaelj.namespace.namespace.account.AccountRepo;
 import michaelj.namespace.namespace.account.UserAccount;
 import michaelj.namespace.namespace.campaign.character.Character;
+import michaelj.namespace.namespace.campaign.character.CharacterRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class CampaignController {
     @Autowired
     CampaignRepo campaignRepo;
 
+    @Autowired
+    CharacterRepo characterRepo;
+
     @GetMapping()
     public String getCampaigns(
             Principal p,
@@ -34,6 +38,7 @@ public class CampaignController {
     }
 
     @PostMapping("/createCampaign")
+//    TODO: breaks if dm is null
     public String createCampaign(
             Principal p,
             Model model,
@@ -67,9 +72,12 @@ public class CampaignController {
 
         if(foundCampaign.isPresent()){
             Campaign singleCampaign = foundCampaign.get();
-            model.addAttribute("campaign", singleCampaign);
             List<UserAccount> allUsers= accountRepo.findAll();
+            List<Character> characters = singleCampaign.getCharacters();
+
+            model.addAttribute("campaign", singleCampaign);
             model.addAttribute("allUsers", allUsers);
+            model.addAttribute("characters", characters);
         }
 
         return "singleCampaignView";
@@ -79,14 +87,26 @@ public class CampaignController {
     public String createCharacter(
             Principal p,
             Model model,
+            @RequestParam Long campaignID,
             @RequestParam String characterName,
             @RequestParam String characterDescription,
             @RequestParam String characterLocation,
-            @RequestParam String characterSpeech,
-            @RequestParam Boolean characterIsNPC
+            @RequestParam(required = false) String characterSpeech,
+            @RequestParam(required = false) Boolean characterIsPC
     ){
-        Character newChar = new Character(characterName, characterDescription, characterLocation, characterSpeech, characterIsNPC);
-        return "redirect:/campaign";
+        Optional<Campaign> foundCampaign = campaignRepo.findById(campaignID);
+        System.out.println(characterIsPC);
+        boolean isPC = (characterIsPC != null ) ? true : false;
+            if(foundCampaign.isPresent()){
+            Campaign campaign = foundCampaign.get();
+            Character newChar = new Character(characterName, characterDescription, characterLocation, characterSpeech, isPC);
+            newChar.setCampaign(campaign);
+            characterRepo.save(newChar);
+            campaignRepo.save(campaign);
+        }
+
+        String returnAddress = "redirect:/campaign/" + campaignID;
+        return returnAddress;
     }
 
 }

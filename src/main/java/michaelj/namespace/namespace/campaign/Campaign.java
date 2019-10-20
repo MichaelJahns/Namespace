@@ -1,13 +1,12 @@
 package michaelj.namespace.namespace.campaign;
 
 import michaelj.namespace.namespace.account.UserAccount;
+import michaelj.namespace.namespace.campaign.character.Character;
 import org.springframework.security.core.userdetails.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Campaign {
@@ -15,13 +14,16 @@ public class Campaign {
     @GeneratedValue
     private long id;
 
-    @ManyToOne
-    private UserAccount createdBy;
     private String moniker;
     private String world;
+    private ArrayList<String> players;
+
+    @ManyToOne
+    private UserAccount createdBy;
     @ManyToOne
     private UserAccount dungeonMaster;
-    private ArrayList<String> players;
+    @OneToMany(mappedBy = "campaign")
+    private List<Character> characters;
 
     public Campaign() {
         this.players = new ArrayList<>();
@@ -81,5 +83,13 @@ public class Campaign {
     }
     public void setDungeonMaster(UserAccount dungeonMaster) {
         this.dungeonMaster = dungeonMaster;
+    }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
     }
 }

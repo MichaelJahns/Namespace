@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments :: stylesheets}">
+
+    <meta charset="UTF-8">
+    <title> Recipes </title>
+</head>
+<body>
+<nav th:replace="~{fragments :: navbar}"></nav>
+
+<!-- For each, Simple Potion Recipe
+    recipe.name, recipe.effect
+    recipe.components[]
+-->
+    <h2> Simple Potions </h2>
+    <div>
+        <h3> Slippery Oil </h3>
+        <h4> Covers a 10sqft area in oil, creatures and allies need to pass a DEX saving throw DC 13</h4>
+        <p> Harrlander and Snail Slime </p>
+    </div>
+
+    <div>
+        <h3> Health Potion</h3>
+        <h4> Recovers 2d4+2 HP</h4>
+        <p> Ranarr Weed and Snap Grass </p>
+    </div>
+
+    <div>
+        <h3> Strength Potion</h3>
+        <h4> +2 to STR for 4 rounds of combat for 1 hour</h4>
+        <p> Tarromin and Limpwurt Root </p>
+    </div>
+
+    <div>
+        <h3> Dexterity Potion</h3>
+        <h4> +2 to DEX for 4 rounds of combat for 1 hour</h4>
+        <p> Guam leaf and Chocolate Dust </p>
+    </div>
+
+    <div>
+        <h3> Constitution Potion</h3>
+        <h4> +2 to CON for 4 rounds of combat for 1 hour</h4>
+        <p> Harralander and Chocolate Dust </p>
+    </div>
+
+    <div>
+        <h3> Intelligence Potion </h3>
+        <h4> +2 to INT for 4 rounds of combat for 1 hour</h4>
+        <p> Tarromin and Ash </p>
+    </div>
+
+    <div>
+        <h3> Charisma Potion</h3>
+        <h4> +2 to CHA for 4 rounds of combat for 1 hour </h4>
+        <p> Avantoe and Snape Grass </p>
+    </div>
+
+    <div>
+        <h3> Defense Potion</h3>
+        <h4> +2 to AC for four rounds of combat or 1 hour </h4>
+        <p> Ranarr Weed and White Berries </p>
+    </div>
+
+    <div>
+        <h3> Weapon Poison</h3>
+        <h4> The first enemy hit by the weapon that has been coated in this poison must take a DC 12 CON saving throw or take 1d4 poison damage</h4>
+        <p> Kwuarm and Dragon Scale Dust </p>
+    </div>
+
+    <div>
+        <h3> Anti-poison Potion</h3>
+        <h4> Removes all poisons </h4>
+        <p> Harralander and Red Spider's Eggs</p>
+    </div>
+
+    <div>
+        <h3> Cure Disease </h3>
+        <h4> Removes all disease </h4>
+        <p> Irit Leaf and Mort Myre Fungus </p>
+    </div>
+
+    <div>
+        <h3> Slippery Oil </h3>
+        <h4> Covers a 10sqft area in oil, creatures and allies need to pass a DEX saving throw DC 13</h4>
+        <p> Harrlander and Snail Slime </p>
+    </div>
+</br>
+<h2> Advanced Potions </h2>
+<div>
+    <h3> Greater Health Potion </h3>
+    <h4> Recovers 4d4+4 HP </h4>
+    <p> Snapdragon and Red Spider's Eggs </p>
+</div>
+
+<div>
+    <h3> Greater Strength Potion </h3>
+    <h4> +4 STR for 4 rounds of combat or 1 hour </h4>
+    <p> Kwuarm and Limpwurt Root </p>
+</div>
+
+<div>
+    <h3> Greater Dexterity Potion </h3>
+    <h4> +4 DEX for 4 rounds of combat or 1 hour </h4>
+    <p> Irit and Eye of Newt</p>
+</div>
+
+<div>
+    <h3> Greater Constitution Potion </h3>
+    <h4> +4 CON for 4 rounds of combat or 1 hour </h4>
+    <p> Avanto and Mort Myre Fungus </p>
+</div>
+
+<div>
+    <h3> Greater Intelligence Potion </h3>
+    <h4> +4 INT for 4 rounds of combat or 1 hour </h4>
+    <p> Harralander and Goat Horn Dust </p>
+</div>
+
+<div>
+    <h3> Greater Charisma Potion </h3>
+    <h4> +4 CHA for 4 rounds of combat or 1 hour </h4>
+    <p> Lantadyme and Potato Cactus </p>
+</div>
+
+<div>
+    <h3> Greater Defense Potion </h3>
+    <h4> +4 to AC for 4 rounds of combat or 1 hour </h4>
+    <p> Cadantine and White Berries </p>
+</div>
+
+<div>
+    <h3> Weapon Poison+ </h3>
+    <h4> One time use, CON saving throw DC 15 each turn, 1d6 poison damage</h4>
+    <p> Coconut Milk and Red Spider's Eggs </p>
+</div>
+
+<div>
+    <h3> Anti-Fire Potion </h3>
+    <h4> Reduce fire damage by 1d6 for 1 hour </h4>
+    <p> Lantadyne and Dragon Scale Dust </p>
+</div>
+
+<div>
+    <h3> Combat Potion </h3>
+    <h4> +2 to all skills for 4 rounds of combat or 1 hour </h4>
+    <p> 1 of each stat potion & Cadantine </p>
+</div>
+
+<div>
+    <h3> Speed Potion </h3>
+    <h4> Increases movement by 20ft for 4 rounds of combat or 1 hour </h4>
+    <p> Toadflax and Toad's Legs </p>
+</div>
+
+<div>
+    <h3> Rage Potion </h3>
+    <h4> Same effects as rage for 4 rounds of combat, attack the nearest creature to you, friend or foe</h4>
+    <p> Vial of Blood, Dwarf Weed, and Hard Alcohol </p>
+</div>
+
+</body>
+</html>
