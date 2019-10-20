@@ -38,7 +38,6 @@ public class CampaignController {
     }
 
     @PostMapping("/createCampaign")
-//    TODO: breaks if dm is null
     public String createCampaign(
             Principal p,
             Model model,
@@ -48,11 +47,10 @@ public class CampaignController {
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
         Campaign newCampaign;
-        if(isUserDM){
+        if(isUserDM != null ){
             newCampaign = new Campaign(user, campaignMoniker, campaignWorld, user);
         }else{
-            newCampaign = new Campaign(user, campaignMoniker, campaignWorld);
-
+            newCampaign = new Campaign(user, campaignMoniker, campaignWorld, null);
         }
         user.addCampaign(newCampaign);
         campaignRepo.save(newCampaign);
@@ -95,7 +93,6 @@ public class CampaignController {
             @RequestParam(required = false) Boolean characterIsPC
     ){
         Optional<Campaign> foundCampaign = campaignRepo.findById(campaignID);
-        System.out.println(characterIsPC);
         boolean isPC = (characterIsPC != null ) ? true : false;
             if(foundCampaign.isPresent()){
             Campaign campaign = foundCampaign.get();
