@@ -2,6 +2,7 @@ package michaelj.namespace.namespace.campaign;
 
 import michaelj.namespace.namespace.account.UserAccount;
 import michaelj.namespace.namespace.campaign.character.Character;
+import michaelj.namespace.namespace.campaign.playerCharacter.PlayerCharacter;
 import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
@@ -16,17 +17,21 @@ public class Campaign {
 
     private String moniker;
     private String world;
-    private ArrayList<String> players;
 
     @ManyToOne
     private UserAccount createdBy;
     @ManyToOne
     private UserAccount dungeonMaster;
+
     @OneToMany(mappedBy = "campaign")
+    private List<PlayerCharacter> playerCharacters;
+
+    @OneToMany(mappedBy = "nativeCampaign")
     private List<Character> characters;
 
+
     public Campaign() {
-        this.players = new ArrayList<>();
+        this.playerCharacters = new ArrayList<>();
     }
 
     public Campaign(UserAccount createdBy, String moniker, String world){
@@ -34,7 +39,7 @@ public class Campaign {
         this.moniker = moniker;
         this.world = world;
         this.dungeonMaster = null;
-        this.players = new ArrayList<>();
+        this.playerCharacters = new ArrayList<>();
     }
 
     public Campaign(UserAccount createdBy, String moniker, String world, UserAccount DM){
@@ -42,7 +47,7 @@ public class Campaign {
         this.moniker = moniker;
         this.world = world;
         this.dungeonMaster = DM;
-        this.players = new ArrayList<>();
+        this.playerCharacters = new ArrayList<>();
     }
 
     //  Getters
@@ -58,11 +63,14 @@ public class Campaign {
     public String getWorld() {
         return world;
     }
-    public ArrayList<String> getPlayers() {
-        return players;
-    }
     public UserAccount getDungeonMaster() {
         return dungeonMaster;
+    }
+    public List<PlayerCharacter> getPlayerCharacters() {
+        return playerCharacters;
+    }
+    public List<Character> getCharacters() {
+        return characters;
     }
 
     //  Setters
@@ -78,18 +86,19 @@ public class Campaign {
     public void setWorld(String world) {
         this.world = world;
     }
-    public void setPlayers(ArrayList<String> players) {
-        this.players = players;
-    }
     public void setDungeonMaster(UserAccount dungeonMaster) {
         this.dungeonMaster = dungeonMaster;
     }
-
-    public List<Character> getCharacters() {
-        return characters;
+    public void setPlayerCharacters(List<PlayerCharacter> playerCharacters) {
+        this.playerCharacters = playerCharacters;
     }
-
     public void setCharacters(List<Character> characters) {
         this.characters = characters;
     }
+
+
+
+
+
+
 }

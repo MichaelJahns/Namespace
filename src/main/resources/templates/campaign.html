@@ -9,35 +9,10 @@
 <body>
     <nav th:replace="~{fragments :: navbar}"></nav>
 
-    <section class="playerCharacterReferenceComponent">
-        <h3> Player Character Reference </h3>
-        <div>
-            <img src="http://via.placeholder.com/150" alt="characterPortrait">
-            <div class="playerCharacterDemographics">
-                <span> Character </span>
-                <span> Owner </span>
-                <span> Race </span>
-                <span> Class </span>
-                <span> Alignment </span>
-            </div>
-            <div class="playerCharacterCombatStats">
-                <span> Level </span>
-                <span> Current HP </span>
-                <span> Maximum HP </span>
-                <span> AC </span>
-            </div>
 
-            <div class="playerCharacterNotes">
-                <p> Notes.. </p>
-            </div>
-        </div>
 
-        <button> Add Player Character </button>
-    </section>
 
-    <table th:replace="~{fragments/campaignFragments :: campaignList}"></table>
 
-    <form  th:replace="~{fragments/campaignFragments :: createCampaignForm}"></form>
 
 </body>
 
@@ -67,15 +42,15 @@
 <!--                <div>-->
 <!--                    New Campaign-->
 <!--                </div>-->
-<!--                <div th:each="campaign : ${campaigns}"-->
-<!--                        th:text="${campaign.name}"-->
-<!--                        th:value="${campaign.id}">-->
+<!--                <div th:each="nativeCampaign : ${campaigns}"-->
+<!--                        th:text="${nativeCampaign.name}"-->
+<!--                        th:value="${nativeCampaign.id}">-->
 <!--                </div>-->
 <!--            </select>-->
 <!--        </aside>-->
 
 <!--        <aside>-->
-<!--            A list of all characters inside of a campaign, organizable by importance, recent, or alphabetical-->
+<!--            A list of all characters inside of a nativeCampaign, organizable by importance, recent, or alphabetical-->
 <!--            <div>-->
 <!--                <form>-->
 <!--                New Character-->

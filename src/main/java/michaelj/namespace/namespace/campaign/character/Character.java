@@ -14,7 +14,7 @@ public class Character {
     private long id;
 
     @ManyToOne
-    private Campaign campaign;
+    private Campaign nativeCampaign;
 
     private String name;
     private String description;
@@ -37,8 +37,8 @@ public class Character {
         this.isPC = isPC;
     }
 //  Getters
-    public Campaign getCampaign() {
-        return campaign;
+    public Campaign getNativeCampaign() {
+        return nativeCampaign;
     }
     public String getName() {
         return name;
@@ -59,8 +59,8 @@ public class Character {
     public void setName(String name) {
         this.name = name;
     }
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
+    public void setNativeCampaign(Campaign nativeCampaign) {
+        this.nativeCampaign = nativeCampaign;
     }
     public void setDescription(String description) {
         this.description = description;

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -27,6 +29,8 @@ public class DashboardController {
             Model model
     ){
         UserAccount user = this.accountRepo.findByUsername(p.getName());
+        List<Campaign> campaigns = user.getCampaigns();
+        model.addAttribute("campaigns", campaigns);
         return "dashboard";
     }
 
