@@ -57,6 +57,8 @@ public class AccountController {
             }
         }catch (Exception E){
             //Todo: what is the fail state?
+            //TODO: When a user attempts to log in with a wrong account, ERROR
+            //TODO: When a user attempts to log in with the wrong password, ERROR
 //            model.addAttribute("errored", true);
         }
         return "login";

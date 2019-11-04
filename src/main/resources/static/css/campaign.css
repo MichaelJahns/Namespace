@@ -4,3 +4,26 @@
     margin: auto;
     align-content: center;
 }
+
+.addCharacterForm{
+    outline: 2px red solid;
+    width: 30%;
+    margin: auto;
+}
+
+.addCharacterForm *{
+    display: inline-block;
+}
+
+.playerCharacterReferenceComponent{
+    border: black solid 5px;
+    width: 75%;
+    margin: auto;
+    margin-top: 50px;
+
+
+}
+
+.playerCharacterDemographics{}
+.playerCharacterCombatStats{}
+.playerCharacterNotes{}

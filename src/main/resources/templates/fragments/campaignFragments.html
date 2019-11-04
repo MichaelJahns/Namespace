@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Campaign Fragments </title>
+</head>
+
+<body>
+
+<table class="forageSatchel" th:fragment="campaignList">
+    <tr>
+        <th> Campaign </th>
+        <th> World </th>
+    </tr>
+    <tr th:each="campaign : ${campaigns}">
+        <td>
+            <a th:text="${campaign.moniker}" th:href="@{${'/campaign/' + campaign.id}}" />
+        </td>
+        <td th:text="${campaign.world}"></td>
+    </tr>
+</table>
+
+<form autocomplete="off" th:fragment="newPlayerCharacterForm" class="newPlayerCharacterForm" action="/campaign/newPlayerCharacter" method="post">
+    <input type="hidden" name="campaignId" th:value="${campaign.id}">
+    <input type="text" name="name" required placeholder="Player Character Name">
+<!--    TODO: These three would be better as a drop down menu-->
+    <input type="text" name="race" required placeholder="Player Character Race">
+    <input type="text" name="characterClass" required placeholder="Player Character Class">
+    <input type="text" name="alignment" required placeholder="Player Character Alignment">
+
+    <input type="number" name="level" required placeholder="Player Character Level">
+    <input type="number" name="maxHP" required placeholder="Player Character Max HP">
+    <input type="number" name="armorClass"required placeholder="Player Character Armor Class">
+<!--Notes will only be addable from the edit screen not the creation screen-->
+    <button type="submit"> New Player Character </button>
+</form>
+
+<form autocomplete="off" th:fragment="createCampaignForm" class="createCampaignForm" action="/campaign/createCampaign" method="post">
+    <label>
+        <input type="text" name="campaignMoniker" required placeholder="Campaign Moniker">
+        The first inn, adventuring party name, a notable antagonist, or a capital city
+    </label>
+    </br>
+
+    <label>
+        <input type="text" name="campaignWorld" required placeholder="Campaign World">
+        The fantasy world your nativeCampaign takes place in
+    </label>
+    </br>
+
+    <label>
+        <input type="radio" name="isUserDM">
+        Are you the DM?
+    </label>
+    </br>
+
+    <button type="submit"> New Campaign </button>
+</form>
+
+<section th:fragment="playerCharacterReferenceComponent" class="playerCharacterReferenceComponent">
+    <h3> Player Character Reference </h3>
+
+    <div th:each="playerCharacter : ${playerCharacters}">
+        <img src="http://via.placeholder.com/150" alt="characterPortrait">
+        <div class="playerCharacterDemographics">
+            <span th:text="${playerCharacter.name}"> Character Name </span>
+            <span> Owner </span>
+            <span th:text="${playerCharacter.race}"> Character Race </span>
+            <span th:text="${playerCharacter.characterClass}">  Character Class </span>
+            <span th:text="${playerCharacter.alignment}"> Alignment </span>
+        </div>
+        <div class="playerCharacterCombatStats">
+            <span th:text="${playerCharacter.level}"> Level </span>
+            <span th:text="${playerCharacter.currentHp}"> Current HP </span>
+            <span th:text="${playerCharacter.maxHp}"> Maximum HP </span>
+            <span th:text="${playerCharacter.armorClass}"> AC </span>
+        </div>
+
+        <div class="playerCharacterNotes">
+            <p> Notes.. </p>
+        </div>
+    </div>
+
+</section>
+
+</body>
+
+</html>

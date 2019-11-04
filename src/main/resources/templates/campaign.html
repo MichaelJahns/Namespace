@@ -9,40 +9,11 @@
 <body>
     <nav th:replace="~{fragments :: navbar}"></nav>
 
-    <table class="forageSatchel">
-        <tr>
-            <th> Campaign </th>
-            <th> World </th>
-        </tr>
-        <tr th:each="campaign : ${campaigns}">
-            <td>
-                <a th:text="${campaign.moniker}" th:href="@{${'/campaign/' + campaign.id}}" />
-            </td>
-            <td th:text="${campaign.world}"></td>
-        </tr>
-    </table>
 
-    <form autocomplete="off" class="createCampaignForm" action="/campaign/createCampaign" method="post">
-        <label>
-            <input type="text" name="campaignMoniker" required placeholder="Campaign Moniker">
-            The first inn, adventuring party name, a notable antagonist, or a capital city
-        </label>
-        </br>
 
-        <label>
-            <input type="text" name="campaignWorld" required placeholder="Campaign World">
-            The fantasy world your campaign takes place in
-        </label>
-        </br>
 
-        <label>
-            <input type="radio" name="isUserDM">
-            Are you the DM?
-        </label>
-        </br>
 
-        <button type="submit"> New Campaign </button>
-    </form>
+
 </body>
 
 </html>
@@ -71,15 +42,15 @@
 <!--                <div>-->
 <!--                    New Campaign-->
 <!--                </div>-->
-<!--                <div th:each="campaign : ${campaigns}"-->
-<!--                        th:text="${campaign.name}"-->
-<!--                        th:value="${campaign.id}">-->
+<!--                <div th:each="nativeCampaign : ${campaigns}"-->
+<!--                        th:text="${nativeCampaign.name}"-->
+<!--                        th:value="${nativeCampaign.id}">-->
 <!--                </div>-->
 <!--            </select>-->
 <!--        </aside>-->
 
 <!--        <aside>-->
-<!--            A list of all characters inside of a campaign, organizable by importance, recent, or alphabetical-->
+<!--            A list of all characters inside of a nativeCampaign, organizable by importance, recent, or alphabetical-->
 <!--            <div>-->
 <!--                <form>-->
 <!--                New Character-->

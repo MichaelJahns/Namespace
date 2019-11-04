@@ -43,6 +43,16 @@ public class InventoryController {
         return "herbology";
     }
 
+    @GetMapping("/recipes")
+    public String getRecipes(
+            Principal p,
+            Model model
+    ){
+        UserAccount user = this.accountRepo.findByUsername(p.getName());
+
+        return "recipes";
+    }
+
     @GetMapping("/forage")
     public String forage(
             Principal p,
