@@ -2,6 +2,10 @@ package michaelj.namespace.namespace;
 
 import com.sun.corba.se.impl.orbutil.graph.Graph;
 
+import java.io.IOException;
+
+import static michaelj.namespace.namespace.WOTCAPI.helper.driver;
+
 public class tester {
     public static void main(String args[]) {
         int vertices = 6;
@@ -17,6 +21,11 @@ public class tester {
         graph.addEdge(4, 5, 6);
         graph.printGraph();
 
+        try{
+            driver();
+        }catch (IOException e){
+
+        }
     }
 }
 
