@@ -13,7 +13,11 @@ public class Response {
         this.results = results;
     }
 
-    class dndClass{
+    public List<dndClass> getResults() {
+        return results;
+    }
+
+    public class dndClass{
         private String name;
         private String url;
 
@@ -22,6 +26,10 @@ public class Response {
         }
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getName() {
+            return name;
         }
     }
 }

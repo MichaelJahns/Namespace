@@ -12,10 +12,13 @@ import java.net.URL;
 
 public class helper {
 
-    public static void driver() throws IOException {
-        String json = getJSON();
+    public static Response driver(){
+        String json ="";
+        try{
+            json = getJSON();
+        }catch(IOException e){}
         Response response = responseFromJson(json);
-        System.out.println(response);
+        return response;
     }
 
     public static String getJSON() throws IOException {

@@ -1,5 +1,6 @@
 package michaelj.namespace.namespace.campaign;
 
+import michaelj.namespace.namespace.WOTCAPI.Response;
 import michaelj.namespace.namespace.account.AccountRepo;
 import michaelj.namespace.namespace.account.UserAccount;
 import michaelj.namespace.namespace.campaign.character.Character;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+
+import static michaelj.namespace.namespace.WOTCAPI.helper.driver;
 
 @Controller
 @RequestMapping("/campaign")
@@ -56,10 +59,15 @@ public class CampaignController {
             List<Character> characters = singleCampaign.getCharacters();
             List<PlayerCharacter> playerCharacters = singleCampaign.getPlayerCharacters();
 
+            Response allDNDClasses = driver();
+            List charmer = allDNDClasses.getResults();
+
             model.addAttribute("campaign", singleCampaign);
             model.addAttribute("allUsers", allUsers);
             model.addAttribute("characters", characters);
             model.addAttribute("playerCharacters", playerCharacters);
+            model.addAttribute("allDNDClasses", charmer);
+
         }
 
         return "singleCampaignView";

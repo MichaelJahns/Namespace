@@ -21,11 +21,9 @@ public class tester {
         graph.addEdge(4, 5, 6);
         graph.printGraph();
 
-        try{
-            driver();
-        }catch (IOException e){
 
-        }
+            driver();
+
     }
 }
 
