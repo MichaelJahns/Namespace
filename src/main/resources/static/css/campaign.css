@@ -20,8 +20,17 @@
     width: 75%;
     margin: auto;
     margin-top: 50px;
+}
 
-
+.playerCharacterReferenceComponent{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+.characterReferenceContainer{
+    outline: red 2px solid;
+    width: 20%;
+    padding: 5px;
 }
 
 .playerCharacterDemographics{}

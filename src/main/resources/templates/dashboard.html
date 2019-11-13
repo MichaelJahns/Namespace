@@ -10,25 +10,12 @@
 <body>
 
     <nav th:replace="~{fragments :: navbar}"></nav>
-    <h1> Welcome to your dashboard </h1>
-
 
     <table th:replace="~{fragments/campaignFragments :: campaignList}"></table>
 
     <form  th:replace="~{fragments/campaignFragments :: createCampaignForm}"></form>
 
     <main id="dashboard">
-
-        <button class="dashboard-item">
-            <h3>
-                <a href="/campaign"> Characters </a>
-            </h3>
-        </button>
-
-        <button class="dashboard-item">
-            <h3> Dice </h3>
-        </button>
-
         <button class="dashboard-item" >
            <h3>
                <a href="/inventory/herbology"> Herbology </a>
@@ -39,12 +26,6 @@
            <h3>
                <a href="/inventory/recipes"> Alchemy </a>
            </h3>
-        </button>
-
-        <button class="dashboard-item">
-            <h3>
-                <a href="/nativeCampaign/singleCharacterView"> Characters </a>
-            </h3>
         </button>
     </main>
 

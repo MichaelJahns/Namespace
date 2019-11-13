@@ -63,13 +63,10 @@
 </form>
 
 <section th:fragment="playerCharacterReferenceComponent" class="playerCharacterReferenceComponent">
-    <h3> Player Character Reference </h3>
-
-    <div th:each="playerCharacter : ${playerCharacters}">
+    <div th:each="playerCharacter : ${playerCharacters}" class="characterReferenceContainer">
         <img src="http://via.placeholder.com/150" alt="characterPortrait">
         <div class="playerCharacterDemographics">
             <span th:text="${playerCharacter.name}"> Character Name </span>
-            <span> Owner </span>
             <span th:text="${playerCharacter.race}"> Character Race </span>
             <span th:text="${playerCharacter.characterClass}">  Character Class </span>
             <span th:text="${playerCharacter.alignment}"> Alignment </span>
@@ -84,6 +81,10 @@
         <div class="playerCharacterNotes">
             <p> Notes.. </p>
         </div>
+    </div>
+
+    <div class="characterReferenceContainer">
+        <form  th:replace="~{fragments/campaignFragments :: newPlayerCharacterForm}"></form>
     </div>
 
 </section>
