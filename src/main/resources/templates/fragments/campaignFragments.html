@@ -64,18 +64,24 @@
 
 <section th:fragment="playerCharacterReferenceComponent" class="playerCharacterReferenceComponent">
     <div th:each="playerCharacter : ${playerCharacters}" class="characterReferenceContainer">
-        <img src="http://via.placeholder.com/150" alt="characterPortrait">
+<!--        TODO: find resources for character portrait-->
+<!--        <img src="http://via.placeholder.com/150" alt="characterPortrait">-->
         <div class="playerCharacterDemographics">
             <span th:text="${playerCharacter.name}"> Character Name </span>
             <span th:text="${playerCharacter.race}"> Character Race </span>
             <span th:text="${playerCharacter.characterClass}">  Character Class </span>
             <span th:text="${playerCharacter.alignment}"> Alignment </span>
         </div>
-        <div class="playerCharacterCombatStats">
-            <span th:text="${playerCharacter.level}"> Level </span>
-            <span th:text="${playerCharacter.currentHp}"> Current HP </span>
-            <span th:text="${playerCharacter.maxHp}"> Maximum HP </span>
-            <span th:text="${playerCharacter.armorClass}"> AC </span>
+
+            <span class=playerCharacterLevel th:text="${playerCharacter.level}"> Level </span>
+
+            <div class="playerCharacterHealth">
+                <span th:text="${playerCharacter.currentHp}"> Current HP </span>
+                /
+                <span th:text="${playerCharacter.maxHp}">Maximum HP </span>
+            </div>
+
+            <span class="playerCharacterArmor" th:text="${playerCharacter.armorClass}"> AC </span>
         </div>
 
         <div class="playerCharacterNotes">
