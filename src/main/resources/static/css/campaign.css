@@ -20,10 +20,65 @@
     width: 75%;
     margin: auto;
     margin-top: 50px;
-
-
 }
 
+.playerCharacterReferenceComponent{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow: scroll;
+}
+.characterReferenceContainer{
+    background: #E88E51;
+    position: relative;
+    outline: red 2px solid;
+    width: 20%;
+    padding: 5px;
+}
+
+.playerCharacterLevel{
+background: #FFCF66;
+
+width: 20%;
+position: absolute;
+right: 0;
+top: 0;
+
+font-size: 1.2em;
+text-align: center;
+
+clip-path: polygon(0 0, 100% 0, 100% 100%, 24% 100%, 0 76%);
+}
+.playerCharacterHealth{
+background: #FF6355;
+
+width: 40%;
+height: 12%;
+position: absolute;
+right: 0;
+bottom: 0;
+
+text-align: center;
+z-index: 2;
+
+clip-path: polygon(24% 0, 100% 0, 100% 100%, 0 100%, 0 24%);
+}
+
+.playerCharacterArmor{
+background: #E8DA51;
+
+padding: 7px;
+width: 15%;
+height: 15%;
+position: absolute;
+right: 0;
+bottom: 10px;
+
+text-align: center;
+
+clip-path: polygon(25% 0, 75% 0, 100% 25%, 70% 100%, 28% 100%, 0 25%);
+
+}
 .playerCharacterDemographics{}
 .playerCharacterCombatStats{}
 .playerCharacterNotes{}

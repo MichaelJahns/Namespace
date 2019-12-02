@@ -26,10 +26,14 @@
     <input type="text" name="name" required placeholder="Player Character Name">
 <!--    TODO: These three would be better as a drop down menu-->
     <input type="text" name="race" required placeholder="Player Character Race">
-    <input type="text" name="characterClass" required placeholder="Player Character Class">
-    <input type="text" name="alignment" required placeholder="Player Character Alignment">
 
-    <input type="number" name="level" required placeholder="Player Character Level">
+    <select id="characterClass" name="characterClass" required>
+        <option th:each="class : ${allDNDClasses}" th:value="${class.name}" th:text="${class.name}"></option>
+    </select>
+    <input type="text" name="alignment" required placeholder="Player Character Alignment">
+    <select id="level" name="level" required>
+        <option th:each="i : ${#numbers.sequence(1, 20)}" th:value="${i}" th:text="${i}"></option>
+    </select>
     <input type="number" name="maxHP" required placeholder="Player Character Max HP">
     <input type="number" name="armorClass"required placeholder="Player Character Armor Class">
 <!--Notes will only be addable from the edit screen not the creation screen-->
@@ -37,6 +41,7 @@
 </form>
 
 <form autocomplete="off" th:fragment="createCampaignForm" class="createCampaignForm" action="/campaign/createCampaign" method="post">
+    <h2> Create Campaign </h2>
     <label>
         <input type="text" name="campaignMoniker" required placeholder="Campaign Moniker">
         The first inn, adventuring party name, a notable antagonist, or a capital city
@@ -59,27 +64,34 @@
 </form>
 
 <section th:fragment="playerCharacterReferenceComponent" class="playerCharacterReferenceComponent">
-    <h3> Player Character Reference </h3>
-
-    <div th:each="playerCharacter : ${playerCharacters}">
-        <img src="http://via.placeholder.com/150" alt="characterPortrait">
+    <div th:each="playerCharacter : ${playerCharacters}" class="characterReferenceContainer">
+<!--        TODO: find resources for character portrait-->
+<!--        <img src="http://via.placeholder.com/150" alt="characterPortrait">-->
         <div class="playerCharacterDemographics">
             <span th:text="${playerCharacter.name}"> Character Name </span>
-            <span> Owner </span>
             <span th:text="${playerCharacter.race}"> Character Race </span>
             <span th:text="${playerCharacter.characterClass}">  Character Class </span>
             <span th:text="${playerCharacter.alignment}"> Alignment </span>
         </div>
-        <div class="playerCharacterCombatStats">
-            <span th:text="${playerCharacter.level}"> Level </span>
-            <span th:text="${playerCharacter.currentHp}"> Current HP </span>
-            <span th:text="${playerCharacter.maxHp}"> Maximum HP </span>
-            <span th:text="${playerCharacter.armorClass}"> AC </span>
+
+            <span class=playerCharacterLevel th:text="${playerCharacter.level}"> Level </span>
+
+            <div class="playerCharacterHealth">
+                <span th:text="${playerCharacter.currentHp}"> Current HP </span>
+                /
+                <span th:text="${playerCharacter.maxHp}">Maximum HP </span>
+            </div>
+
+            <span class="playerCharacterArmor" th:text="${playerCharacter.armorClass}"> AC </span>
         </div>
 
         <div class="playerCharacterNotes">
             <p> Notes.. </p>
         </div>
+    </div>
+
+    <div class="characterReferenceContainer">
+        <form  th:replace="~{fragments/campaignFragments :: newPlayerCharacterForm}"></form>
     </div>
 
 </section>

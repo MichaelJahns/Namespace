@@ -1,6 +1,5 @@
 package michaelj.namespace.namespace;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 public class tester {
     public static void main(String args[]) {
@@ -16,6 +15,8 @@ public class tester {
         graph.addEdge(4, 1, 4);
         graph.addEdge(4, 5, 6);
         graph.printGraph();
+
+
 
     }
 }

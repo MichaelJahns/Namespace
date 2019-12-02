@@ -12,8 +12,7 @@
     display: flex;
     border: 4px ridge gray;
     color: black;
-    background-color: blue;
-
+    background-image: url("https://via.placeholder.com/300x250");
     margin: 2%;
     width: 43%;
     height: 250px;

@@ -43,6 +43,8 @@
 <!--        </label>-->
 <!--        <button type="submit"> Create </button>-->
 <!--    </form>-->
+    <section th:replace="~{fragments/campaignFragments :: playerCharacterReferenceComponent}"></section>
+
 
 <table class="forageSatchel">
     <tr>
@@ -68,9 +70,6 @@
     <select>
         <option th:each="user : ${allUsers}" th:value="${user.username}" th:text="${user.username}"/>
     </select>
-
-    <form  th:replace="~{fragments/campaignFragments :: newPlayerCharacterForm}"> </form>
-    <section th:replace="~{fragments/campaignFragments :: playerCharacterReferenceComponent}"></section>
 </body>
 
 </html>
