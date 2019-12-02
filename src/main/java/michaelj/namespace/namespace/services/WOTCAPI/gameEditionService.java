@@ -1,28 +1,28 @@
-package michaelj.namespace.namespace.WOTCAPI;
+package michaelj.namespace.namespace.services.WOTCAPI;
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-public class helper {
+@Service("gameEditionService")
+public class gameEditionService {
 
     public static Response driver(){
         String json ="";
         try{
-            json = getJSON();
+            json = getJSON("http://dnd5eapi.co/api/classes");
         }catch(IOException e){}
         Response response = responseFromJson(json);
         return response;
     }
 
-    public static String getJSON() throws IOException {
-        String APIURL = "http://dnd5eapi.co/api/classes";
+    public static String getJSON(String APIURL) throws IOException {
         URL url = new URL(APIURL);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         try {

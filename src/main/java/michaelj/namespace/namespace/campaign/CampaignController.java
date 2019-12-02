@@ -1,6 +1,6 @@
 package michaelj.namespace.namespace.campaign;
 
-import michaelj.namespace.namespace.WOTCAPI.Response;
+import michaelj.namespace.namespace.services.WOTCAPI.Response;
 import michaelj.namespace.namespace.account.AccountRepo;
 import michaelj.namespace.namespace.account.UserAccount;
 import michaelj.namespace.namespace.campaign.character.Character;
@@ -16,7 +16,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
-import static michaelj.namespace.namespace.WOTCAPI.helper.driver;
+import static michaelj.namespace.namespace.services.WOTCAPI.gameEditionService.driver;
+
 
 @Controller
 @RequestMapping("/campaign")

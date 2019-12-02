@@ -1,10 +1,5 @@
 package michaelj.namespace.namespace;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-
-import java.io.IOException;
-
-import static michaelj.namespace.namespace.WOTCAPI.helper.driver;
 
 public class tester {
     public static void main(String args[]) {
@@ -22,7 +17,6 @@ public class tester {
         graph.printGraph();
 
 
-            driver();
 
     }
 }
