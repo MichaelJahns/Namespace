@@ -10,7 +10,7 @@
 
 
 
-    <div class="content">
+    <div id="login" class="content">
         <h1>
             Welcome to my app.
             Its a super simple JAVA-Spring CRUD app, with user authentication, made to help me keep track of my herbs and
@@ -21,8 +21,20 @@
             <input type="password" name="password" required placeholder="Password"> </input>
             <button type="submit" name="submit"> Login </button>
         </form>
-        <label> Don't have an account? <a class="a-as-button" href="/signup"> Join us! </a></label>
+        <label> Don't have an account? <a class="a-as-button" href="#signup"> Join us! </a></label>
+    </div>
 
+
+    <div id="signup" class="content">
+        <h1> Sign Up </h1>
+
+        <form class="form-input" action="/signup" method="post">
+            <input type="text" name="username" required placeholder="Username"> </input>
+            <input type="password" name="password" required placeholder="Password"> </input>
+            <button type="submit" name="submit"> Start Journaling</button>
+        </form>
+        <p th:if="${errored}"> An account with that username already exists. Please, try again. </p>
+        <label> Have an account? <a class="a-as-button" href="#login"> Login! </a></label>
     </div>
 
 </body>

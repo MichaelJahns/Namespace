@@ -10,7 +10,12 @@ a{
 display: flex;
 flex-direction: column;
 width: 50vw;
-margin: auto;
+margin: 20px auto;
+padding: 17px;
+box-shadow: -3px 2px 2px grey;
+}
 
-
+.form-input{
+display: flex;
+flex-direction: column;
 }
