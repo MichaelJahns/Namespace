@@ -7,15 +7,16 @@
 <body>
 <nav th:replace="~{fragments :: navbar}"></nav>
 
-<h1> Sign Up </h1>
 
-<p th:if="${errored}"> An account with that username already exists. Please, try again. </p>
-    <div>
+    <div class="content">
+        <h1> Sign Up </h1>
+
         <form class="form-input" action="/signup" method="post">
             <input type="text" name="username" required placeholder="Username"> </input>
             <input type="password" name="password" required placeholder="Password"> </input>
             <button type="submit" name="submit"> Start Journaling</button>
         </form>
+        <p th:if="${errored}"> An account with that username already exists. Please, try again. </p>
     </div>
 
 </body>

@@ -1,6 +1,5 @@
 package michaelj.namespace.namespace.account;
 
-import michaelj.namespace.namespace.campaign.Campaign;
 import michaelj.namespace.namespace.inventory.Inventory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,23 +23,12 @@ public class UserAccount implements UserDetails {
     @OneToOne
     private Inventory inventory;
 
-    @OneToMany (mappedBy = "createdBy")
-    private List<Campaign> campaigns;
-
-    @OneToMany (mappedBy = "dungeonMaster")
-    private List<Campaign> dungeonMasters;
-
     public UserAccount(){}
 
     public UserAccount(String username, String password, PasswordEncoder encoder){
         this.username = username;
         this.password = encoder.encode(password);
         this.inventory = new Inventory();
-        this.campaigns = new ArrayList<>();
-    }
-
-    public void addCampaign(Campaign campaign){
-        this.campaigns.add(campaign);
     }
 
     //Getters
@@ -89,15 +77,6 @@ public class UserAccount implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-
-    public List<Campaign> getCampaigns() {
-        return campaigns;
-    }
-
-    public void setCampaigns(List<Campaign> campaigns) {
-        this.campaigns = campaigns;
     }
 
     @Override

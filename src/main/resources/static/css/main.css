@@ -6,3 +6,11 @@ a{
     text-decoration: none;
     color: rgb(26, 115, 232);
 }
+.content {
+display: flex;
+flex-direction: column;
+width: 50vw;
+margin: auto;
+
+
+}
