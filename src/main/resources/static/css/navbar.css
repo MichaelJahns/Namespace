@@ -7,27 +7,8 @@
     background-color: black;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-start;
-}
-#navBarItems{
-    width: 70%;
-    background-color: inherit;
-
-    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
-
-}
-#spacer{
-    width: 6%;
-}
-#accountControls{
-    width: 24%;
-    background-color: inherit;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 }
 
 #titleCard{
