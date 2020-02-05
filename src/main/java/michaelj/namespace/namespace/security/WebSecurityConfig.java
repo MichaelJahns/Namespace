@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/dashboard")
+                .defaultSuccessUrl("/inventory/herbology")
                 .failureUrl("/login?errored=true")
 
                 // configure logout

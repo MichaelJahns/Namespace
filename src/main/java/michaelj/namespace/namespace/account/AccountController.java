@@ -94,15 +94,4 @@ public class AccountController {
             return "signUp";
         }
     }
-
-    @GetMapping("/account")
-    public String getAccountPage(
-            Principal p,
-            Model model
-    ){
-        UserAccount user = accountRepo.findByUsername(p.getName());
-        model.addAttribute("user", user);
-        return "account";
-    }
-
 }
