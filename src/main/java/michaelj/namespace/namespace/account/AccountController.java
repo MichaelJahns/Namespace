@@ -64,9 +64,6 @@ public class AccountController {
         return "login";
     }
 
-    @GetMapping("/signup")
-    public String signup() {return "signUp"; }
-
     @PostMapping("/signup")
     public String signup(
             @RequestParam String username,
@@ -91,7 +88,7 @@ public class AccountController {
             return "redirect:/dashboard";
         } else{
             model.addAttribute("errored", true);
-            return "signUp";
+            return "login";
         }
     }
 }
